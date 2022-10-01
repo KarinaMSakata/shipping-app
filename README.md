@@ -1,24 +1,18 @@
-# README
+SGFE - Sistema Gerencial de Frete para E-commerce
+Desenvolvido por Karina Midori Sakata
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicação para um e-commerce, com a finalidade de gerenciar o envio de recebimento de encomendas em escala nacional.
 
-Things you may want to cover:
+Desenvolvido em Ruby on Rails
+  Versão ruby 3.0.0
+  Versão rails 7.0.4
+  Banco de Dados SQLite3
 
-* Ruby version
+Gems instaladas para execução de testes:
+  gem "rspec-rails" 
+  gem "capybara" 
 
-* System dependencies
+Instruções para execução de testes:
+  No terminal, acesse o diretório do projeto e execute o comando "rspec". Em caso de falha, o erro será apresentado na tela com uma mensagem vermelha. Caso não haja nenhum erro a ser corrigido, será devolvida a quantidade de testes na cor verde.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Instruções para execução do projeto:
