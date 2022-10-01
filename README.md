@@ -12,6 +12,9 @@ Gems instaladas para execução de testes:
   gem "rspec-rails" 
   gem "capybara" 
 
+Links úteis:
+  Organização de projeto: https://github.com/users/KarinaMSakata/projects/1
+
 Instruções para execução de testes:
   No terminal, acesse o diretório do projeto e execute o comando "rspec". Em caso de falha, o erro será apresentado na tela com uma mensagem vermelha. Caso não haja nenhum erro a ser corrigido, será devolvida a quantidade de testes na cor verde.
 
