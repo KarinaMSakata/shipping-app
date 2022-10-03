@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models: 
+      mode_of_transport: 
+        one: 'Modalidade de Transporte'
+        other: 'Modalidades de Transporte'
+    attributes:
+      mode_of_transport:
+        name: "Nome"
+        min_distance: "Distância Mínima Praticada"
+        max_distance: "Distância Máxima Praticada"
+        min_weight: "Peso Mínimo"
+        max_weight: "Peso Máximo"
+        fixed_rate: "Taxa Fixa"

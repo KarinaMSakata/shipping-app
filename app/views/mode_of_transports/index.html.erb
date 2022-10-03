@@ -1,0 +1,11 @@
+<h1><%= ModeOfTransport.model_name.human(count: @mode_of_transports.count) %></h1>
+
+<% if @mode_of_transports.any? %> 
+
+  <% @mode_of_transports.each do |mt| %>
+    <h2><%= link_to mt.name, mt %></h2>
+  <% end %>
+
+<% else %>
+  <%= 'Não existem modalidades cadastradas.' %>
+<% end %>
