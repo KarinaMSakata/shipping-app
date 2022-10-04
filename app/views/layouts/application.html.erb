@@ -19,9 +19,22 @@
             <li><%= link_to 'Modalidades Cadastradas', mode_of_transports_url %></li>
           </ul>
         </li>
+        <% if user_signed_in? %>
+          <p>Olá, <%= current_user.name %>!</p>
+          <p>Você é um usuário <%= User.human_attribute_name("role.#{current_user.role}") %> </p>
+          <%= current_user.email %>
+          <%= button_to 'Sair', destroy_user_session_url, method: :delete %>
+        <% else %>
+          <li> <%= link_to 'Entrar', new_user_session_url %></li>
+        <% end %>
       </nav>
-      <%=notice%>
     </header>
+      <main>
+        <div>
+          <%= alert %>
+          <%= notice %>
+        </div>
     <%= yield %>
+    </main>
   </body>
 </html>
