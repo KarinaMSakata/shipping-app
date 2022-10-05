@@ -12,3 +12,6 @@ pt-BR:
         min_weight: "Peso Mínimo"
         max_weight: "Peso Máximo"
         fixed_rate: "Taxa Fixa"
+      mode_of_transport/status:
+        activated: "Ativo"
+        disable: "Desativado"

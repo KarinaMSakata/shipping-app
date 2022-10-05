@@ -24,6 +24,17 @@ RSpec.describe User, type: :model do
       #Assert
       expect(user.errors.include? :email).to be true
     end
+
+    it 'email deve ter domínio @sistemadefrete.com.br' do 
+      #Arrange
+      user = User.new(email: 'karina@gmail.com')
+
+      #Act
+      user.valid?
+      
+      #Assert
+      expect(user.errors.include? :email).to be true
+    end
   end
   end
 end
