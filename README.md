@@ -12,6 +12,9 @@ Gems instaladas para execução de testes:
   gem "rspec-rails" 
   gem "capybara" 
 
+Gem instalada para criação de autenticação:
+  gem "devise"
+
 Links úteis:
   Organização de projeto: https://github.com/users/KarinaMSakata/projects/1
 

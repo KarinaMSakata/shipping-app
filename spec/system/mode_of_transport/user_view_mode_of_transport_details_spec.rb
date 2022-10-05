@@ -3,9 +3,11 @@ require 'rails_helper'
 describe 'Usuário vê detalhes de uma modalidade de transporte' do
   it 'a partir da listagem de modalidades' do
     #Arrange
+    user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'user')
     ModeOfTransport.create!(name: 'Moto', min_distance: 1, max_distance: 80, min_weight: 1, max_weight: 10, fixed_rate: 5)
-
+    
     #Act
+    login_as(user)
     visit root_url
     click_on 'Modalidade de Transporte'
     click_on 'Modalidades Cadastradas'
@@ -22,9 +24,11 @@ describe 'Usuário vê detalhes de uma modalidade de transporte' do
 
   it 'e volta para tela de listagem' do
     #Arrange
+    user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'user')
     ModeOfTransport.create!(name: 'Moto', min_distance: 1, max_distance: 80, min_weight: 1, max_weight: 10, fixed_rate: 5)
-
+    
     #Act
+    login_as(user)
     visit root_url
     click_on 'Modalidade de Transporte'
     click_on 'Modalidades Cadastradas'

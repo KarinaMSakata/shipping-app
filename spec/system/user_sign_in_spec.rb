@@ -1,8 +1,29 @@
 require 'rails_helper'
 describe 'Usuário se autentica' do
+
   it 'com sucesso' do
     #Arrange
-    User.create!(email: 'karina@email.com', password: 'password')
+    User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+
+    #Act
+    visit root_url
+    click_on 'Entrar'
+    fill_in 'E-mail', with: 'karina@sistemadefrete.com.br' 
+    fill_in 'Senha', with: 'password'
+    click_on 'Avançar'
+
+    #Assert
+    expect(page).to have_content 'Login efetuado com sucesso.'
+    within 'nav' do 
+      expect(page).not_to have_link 'Entrar'
+      expect(page).to have_button 'Sair'
+      expect(page).to have_content 'karina@sistemadefrete.com.br'
+    end
+  end
+
+  it 'se o email for de dominio @sistemadefrete.com.br' do
+    #Arrange
+    User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password: 'password', role:'admin')
 
     #Act 
     visit root_url
@@ -12,30 +33,24 @@ describe 'Usuário se autentica' do
     click_on 'Avançar'
     
     #Assert
-    expect(page).to have_content 'Login efetuado com sucesso.'
-    within 'nav' do 
-      expect(page).not_to have_link 'Entrar'
-      expect(page).to have_button 'Sair'
-      expect(page).to have_content 'karina@email.com'
-    end
+    expect(page).to have_content 'E-mail ou senha inválidos.'
   end
 
   it 'e faz logout' do
      #Arrange
-     User.create!(email: 'karina@email.com', password: 'password')
+     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password: 'password', role:'user')
 
-     #Act 
+     #Act
      visit root_url
      click_on 'Entrar'
-     fill_in 'E-mail', with: 'karina@email.com'
+     fill_in 'E-mail', with: 'karina@sistemadefrete.com.br'
      fill_in 'Senha', with: 'password'
      click_on 'Avançar'
      click_on 'Sair'
      
      #Assert
-     expect(page).to have_content 'Logout efetuado com sucesso.'
      expect(page).to have_link 'Entrar'
      expect(page).not_to have_button 'Sair'
-     expect(page).not_to have_content 'karina@email.com'
+     expect(page).not_to have_content 'karina@sistemadefrete.com.br'
   end
 end

@@ -5,5 +5,7 @@
 <p><%= ModeOfTransport.human_attribute_name(:max_weight) %>: <%= @mode_of_transport.max_weight %>kg</p>
 <p><%= ModeOfTransport.human_attribute_name(:fixed_rate) %>: <%= number_to_currency(@mode_of_transport.fixed_rate) %></p>
 
+<% if current_user.admin? %>
 <p><%= link_to 'Editar', edit_mode_of_transport_url %></p>
+<% end %>
 <p><%= link_to 'Voltar', mode_of_transports_url %></p>

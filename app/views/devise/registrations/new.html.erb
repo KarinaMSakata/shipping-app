@@ -27,9 +27,11 @@
   </div>
 
   <div>
-  <%= f.label :role %><br />  
-  <%= f.radio_button :role, 'user', checked: true %> Usuário Regular <br />
-  <%= f.radio_button :role, 'admin' %> Administrador <br />
+  <%= f.label :role, "Permissão de acesso" %><br />  
+  <%= f.radio_button :role, 'user', checked: true %> 
+  <%= f.label :role, 'Usuário Regular' %> <br />
+  <%= f.radio_button :role, 'admin' %> 
+  <%= f.label :role, 'Administrador' %> <br />
   </div>
 
   <div class="actions">

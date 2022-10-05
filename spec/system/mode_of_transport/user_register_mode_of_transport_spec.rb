@@ -1,9 +1,23 @@
 require 'rails_helper'
 
-describe 'Usuário cadastra um modelo de transporte' do
-  it 'a partir de uma opção no menu' do
+describe 'Usuário admin cadastra um modelo de transporte' do
+  it 'se estiver autenticado' do 
     #Arrange
     #Act
+    visit root_url
+    click_on 'Modalidade de Transporte'
+    click_on 'Cadastrar Nova Modalidade'
+
+    #Assert
+    expect(current_url).to eq new_user_session_url
+  end
+
+  it 'a partir de uma opção no menu' do
+    #Arrange
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+
+    #Act
+    login_as(admin)
     visit root_url
     click_on 'Modalidade de Transporte'
     click_on 'Cadastrar Nova Modalidade'
@@ -19,7 +33,10 @@ describe 'Usuário cadastra um modelo de transporte' do
 
   it 'com sucesso' do
     #Arrange
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+
     #Act
+    login_as(admin)
     visit root_url
     click_on 'Modalidade de Transporte'
     click_on 'Cadastrar Nova Modalidade'
@@ -43,7 +60,10 @@ describe 'Usuário cadastra um modelo de transporte' do
 
   it 'e dados são obrigatórios' do
     #Arrange
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+    
     #Act
+    login_as(admin)
     visit root_url
     click_on 'Modalidade de Transporte'
     click_on 'Cadastrar Nova Modalidade'
@@ -64,4 +84,19 @@ describe 'Usuário cadastra um modelo de transporte' do
     expect(page).to have_content 'Peso Máximo não pode ficar em branco'
     expect(page).to have_content 'Taxa Fixa não pode ficar em branco'
   end
+
+  it 'mas está autenticado como regular' do
+   #Arrange
+   user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'user')
+
+   #Act
+   login_as(user)
+   visit root_url
+   click_on 'Modalidade de Transporte'
+   click_on 'Cadastrar Nova Modalidade'
+
+   #Assert
+   expect(page).to have_content 'Você já está autenticado.'
+  end
+
 end

@@ -1,5 +1,8 @@
 class ModeOfTransportsController < ApplicationController
   before_action :set_mode_of_transport, only:[:show, :edit, :update]
+  before_action :only => [:new, :create, :edit, :update] do
+    redirect_to new_user_session_url unless current_user && current_user.admin?
+  end
 
   def new
     @mode_of_transport = ModeOfTransport.new
