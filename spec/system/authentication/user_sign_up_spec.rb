@@ -18,7 +18,6 @@ describe 'Usuário cria autenticação' do
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
     expect(page).to have_content 'Você é um usuário regular'
     expect(page).to have_content 'Olá, Maria!' 
-    expect(page).to have_content 'maria@sistemadefrete.com.br'
     expect(page).to have_button 'Sair'
   end
   

@@ -96,7 +96,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
    click_on 'Cadastrar Nova Modalidade'
 
    #Assert
-   expect(page).to have_content 'Você já está autenticado.'
+   expect(page).to have_content 'Você não possui permissão para acessar esta página!'
   end
 
 end

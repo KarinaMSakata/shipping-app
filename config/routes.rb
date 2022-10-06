@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     patch 'activated', on: :member
     patch 'disable', on: :member
   end
+
+  resources :vehicles, only: [:new, :create, :show]
 end

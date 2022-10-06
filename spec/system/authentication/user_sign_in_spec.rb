@@ -14,11 +14,8 @@ describe 'Usuário se autentica' do
 
     #Assert
     expect(page).to have_content 'Login efetuado com sucesso.'
-    within 'nav' do 
-      expect(page).not_to have_link 'Entrar'
-      expect(page).to have_button 'Sair'
-      expect(page).to have_content 'karina@sistemadefrete.com.br'
-    end
+    expect(page).not_to have_link 'Entrar'
+    expect(page).to have_button 'Sair'
   end
 
   it 'se o email for de dominio @sistemadefrete.com.br' do
@@ -51,6 +48,5 @@ describe 'Usuário se autentica' do
      #Assert
      expect(page).to have_link 'Entrar'
      expect(page).not_to have_button 'Sair'
-     expect(page).not_to have_content 'karina@sistemadefrete.com.br'
   end
 end

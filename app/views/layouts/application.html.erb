@@ -3,6 +3,8 @@
   <head>
     <title>ShippingApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,29 +14,52 @@
   <body>
     <header>
       <h1>SGFE - Sistema Gerencial de Frete para E-commerce</h1>
-      <nav>
-        <li><%= link_to 'Modalidade de Transporte' %>
-          <ul>
-            <li><%= link_to 'Cadastrar Nova Modalidade', new_mode_of_transport_url %></li>
-            <li><%= link_to 'Modalidades Cadastradas', mode_of_transports_url %></li>
-          </ul>
-        </li>
+   
+       <nav>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <span class="navbar-toggler-icon"></span>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Frota
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" <%= link_to 'Cadastrar Veículo', new_vehicle_url %></li></a>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Modalidade de Transporte
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" <%= link_to 'Cadastrar Nova Modalidade', new_mode_of_transport_url %></li></a>
+                    <li><a class="dropdown-item" <%= link_to 'Modalidades Cadastradas', mode_of_transports_url %></li></a>
+                  </ul>
+                </li>
+              </ul>               
+          </div>    
         <% if user_signed_in? %>
           <p>Olá, <%= current_user.name %>!</p>
           <p>Você é um usuário <%= User.human_attribute_name("role.#{current_user.role}") %> </p>
-          <%= current_user.email %>
-          <%= button_to 'Sair', destroy_user_session_url, method: :delete %>
+          <%= button_to 'Sair', destroy_user_session_url, method: :delete %> 
         <% else %>
-          <li> <%= link_to 'Entrar', new_user_session_url %></li>
+         <%= link_to 'Entrar', new_user_session_url %>
         <% end %>
       </nav>
     </header>
-      <main>
-        <div>
-          <%= alert %>
-          <%= notice %>
-        </div>
+
+  <main>
+    <div>
+      <%= alert %>
+      <%= notice %>
+    </div>
     <%= yield %>
-    </main>
+  </main>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
 </html>

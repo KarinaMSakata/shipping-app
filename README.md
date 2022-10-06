@@ -15,6 +15,9 @@ Gems instaladas para execução de testes:
 Gem instalada para criação de autenticação:
   gem "devise"
 
+Gem instalada para bootstrap
+gem 'bootstrap', '~> 5.2.1'
+
 Links úteis:
   Organização de projeto: https://github.com/users/KarinaMSakata/projects/1
 

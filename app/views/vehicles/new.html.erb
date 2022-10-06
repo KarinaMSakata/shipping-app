@@ -1,0 +1,21 @@
+<%= form_with(model: @vehicle) do |f| %>
+  
+  <p><%= f.label :sort, "Tipo" %>  
+  <%= f.text_field :sort %></p>  
+  <p><%= f.label :brand, "Marca" %> 
+  <%= f.text_field :brand %></p>
+  <p><%= f.label :model, "Modelo" %>  
+  <%= f.text_field :model %></p>
+  <p><%= f.label :identification, "Placa de identificação" %> 
+  <%= f.text_field :identification %></p>
+  <p><%= f.label :year_manufacture, "Ano de fabricação" %> 
+  <%= f.number_field :year_manufacture %></p>
+  <p><%= f.label :max_load, "Capacidade máxima de carga (peso)" %>
+  <%= f.number_field :max_load %></p>
+  <%= f.submit 'Gravar'%>
+
+
+<% end %>
+
+
+<%= link_to 'Voltar', root_url %>

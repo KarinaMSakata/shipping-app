@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models: 
+      vehicle: 
+        one: 'Veículo'
+        other: 'Veículos'
+    attributes:
+      vehicle:
+        sort: "Tipo"
+        brand: "Marca"
+        model: "Modelo"
+        identification: "Placa de identificação"
+        year_manufacture: "Ano de fabricação"
+        max_load: "Capacidade máxima de carga (peso)"

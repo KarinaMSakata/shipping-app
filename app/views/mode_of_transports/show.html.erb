@@ -12,7 +12,7 @@
   <% else %>
     <p><%= button_to 'Desativar',  disable_mode_of_transport_url, { method: 'patch'} %></p>
   <% end %>
+  <p><%= link_to 'Editar', edit_mode_of_transport_url %></p>
 <% end %>
 
-<p><%= link_to 'Editar', edit_mode_of_transport_url %></p>
 <p><%= link_to 'Voltar', mode_of_transports_url %></p>

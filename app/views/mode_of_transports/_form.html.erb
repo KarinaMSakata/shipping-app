@@ -7,19 +7,21 @@
   </ul>
 <% end %>
 
+
 <%= form_with(model: @mode_of_transport ) do |f| %>
-  <%= f.label :name %>  
-  <%= f.text_field :name %>
-  <%= f.label :min_distance %> (Km)  
-  <%= f.number_field :min_distance %>
-  <%= f.label :max_distance %> (Km) 
-  <%= f.number_field :max_distance %>
-  <%= f.label :min_weight %> (Kg)
-  <%= f.number_field :min_weight %>
-  <%= f.label :max_weight %> (Kg)
-  <%= f.number_field :max_weight %>
-  <%= f.label :fixed_rate %> (R$)
-  <%= f.number_field :fixed_rate %>
+  
+  <p><%= f.label :name %>  
+  <%= f.text_field :name %></p>
+  <p><%= f.label :min_distance %> (Km)  
+  <%= f.number_field :min_distance %></p>
+  <p><%= f.label :max_distance %> (Km) 
+  <%= f.number_field :max_distance %></p>
+  <p><%= f.label :min_weight %> (Kg)
+  <%= f.number_field :min_weight %></p>
+  <p><%= f.label :max_weight %> (Kg)
+  <%= f.number_field :max_weight %></p>
+  <p><%= f.label :fixed_rate %> (R$)
+  <%= f.number_field :fixed_rate %></p>
   <%= f.submit 'Gravar' %>
   
 <% end %>
