@@ -1,0 +1,7 @@
+<h1>Frota</h1>
+
+<% if @vehicles.any? %>
+  <% @vehicles.each do |v| %>
+    <p><%= v.sort %> <%= v.brand %> | <%= v.model%></p>
+  <% end %>
+<% end %>

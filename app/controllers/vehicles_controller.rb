@@ -11,12 +11,19 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
       redirect_to @vehicle, notice: 'Veículo cadastrado com sucesso.'
+    else
+      flash.now.notice = "Não foi possível cadastrar o veículo."
+      render 'new'
 
     end
   end
 
   def show
     @vehicle = Vehicle.find(params[:id])
+  end
+
+  def index
+    @vehicles = Vehicle.all
   end
 
   private 

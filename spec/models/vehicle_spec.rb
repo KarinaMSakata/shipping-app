@@ -107,6 +107,19 @@ RSpec.describe Vehicle, type: :model do
     end
   end
 
+  context 'uniqueness' do
+    it 'placa deve ser única' do
+      #Arrange
+      v = Vehicle.create!(sort: 'Carro', brand: 'Fiat', model: 'Doblo', identification:'ABC1D23', year_manufacture:'2019', max_load: 150)
+      other_v = Vehicle.new(identification: 'ABC1D23')
+
+      #Act
+      other_v.valid?
+    
+      #Assert
+      expect(other_v.errors.include? :identification).to be true
+    end
+  end
 
   end
 end

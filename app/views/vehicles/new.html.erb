@@ -1,3 +1,10 @@
+<% if @vehicle.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <% @vehicle.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
 <%= form_with(model: @vehicle) do |f| %>
   
   <p><%= f.label :sort, "Tipo" %>  
@@ -13,8 +20,6 @@
   <p><%= f.label :max_load, "Capacidade máxima de carga (peso)" %>
   <%= f.number_field :max_load %></p>
   <%= f.submit 'Gravar'%>
-
-
 <% end %>
 
 

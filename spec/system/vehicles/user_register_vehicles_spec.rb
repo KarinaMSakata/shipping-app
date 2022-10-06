@@ -59,4 +59,26 @@ describe 'Usuário cadastra um veículo' do
     expect(page).to have_content 'Ano de fabricação: 2019'
     expect(page).to have_content 'Capacidade máxima de carga (peso): 150kg'
   end
+
+  it 'e dados são obrigatórios' do
+    #Arrange
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+
+    #Act
+    login_as(admin)
+    visit root_url
+    click_on 'Frota'
+    click_on 'Cadastrar Veículo'
+    fill_in 'Tipo', with: ''
+    fill_in 'Marca', with: ''
+    fill_in 'Modelo', with: ''
+    fill_in 'Placa de identificação', with: ''
+    fill_in 'Ano de fabricação', with: ''
+    fill_in 'Capacidade máxima de carga (peso)', with: nil
+    click_on 'Gravar'
+    
+    #Assert
+    expect(page).to have_content 'Não foi possível cadastrar o veículo.'
+    expect(page).to have_content 'Tipo não pode ficar em branco'
+  end
 end
