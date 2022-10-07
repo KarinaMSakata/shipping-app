@@ -1,5 +1,12 @@
 <h1>Frota</h1>
 <br>
+
+  <%= form_with url: search_vehicles_url, method: :get do |f| %>
+    <%= f.label :query, 'Buscar Veículo'%>
+    <%= f.text_field :query, placeholder: 'Digite a placa do veículo' %>
+    <%= f.submit 'Buscar' %>
+  <% end %>
+<br>   
 <% if @vehicles.any? %>
   <% @vehicles.each do |v| %>
     <% if v.in_operation? %>

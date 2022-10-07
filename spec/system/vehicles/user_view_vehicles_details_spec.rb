@@ -19,7 +19,7 @@ describe 'Usuário vê detalhes de um veículo' do
     expect(page).to have_content 'Tipo: Carro'
     expect(page).to have_content 'Marca: Fiat'
     expect(page).to have_content 'Modelo: Doblo'
-    expect(page).to have_content 'Placa de identificação: ABC1D23'
+    expect(page).to have_content 'Placa de Identificação: ABC1D23'
     expect(page).to have_content 'Ano de fabricação: 2019'
     expect(page).to have_content 'Capacidade máxima de carga (peso): 150kg'  
     expect(page).to have_content 'Status: Em manutenção'

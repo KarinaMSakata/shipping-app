@@ -47,6 +47,10 @@ class VehiclesController < ApplicationController
     redirect_to @vehicle
   end
 
+  def search
+    @identification = params[:query]
+    @vehicles = Vehicle.where("identification LIKE ?", "%#{@identification}%")
+  end
 
   private 
 

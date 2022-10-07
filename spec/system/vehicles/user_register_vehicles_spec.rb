@@ -28,7 +28,7 @@ describe 'Usuário cadastra um veículo' do
     expect(page).to have_field 'Tipo'
     expect(page).to have_field 'Marca'
     expect(page).to have_field 'Modelo'
-    expect(page).to have_field 'Placa de identificação'
+    expect(page).to have_field 'Placa de Identificação'
     expect(page).to have_field 'Ano de fabricação'
     expect(page).to have_field 'Capacidade máxima de carga (peso)'
   end
@@ -45,7 +45,7 @@ describe 'Usuário cadastra um veículo' do
     fill_in 'Tipo', with: 'Carro'
     fill_in 'Marca', with: 'Fiat'
     fill_in 'Modelo', with: 'Doblo'
-    fill_in 'Placa de identificação', with: 'ABC1D23'
+    fill_in 'Placa de Identificação', with: 'ABC1D23'
     fill_in 'Ano de fabricação', with: '2019'
     fill_in 'Capacidade máxima de carga (peso)', with: 150
     click_on 'Gravar'
@@ -55,7 +55,7 @@ describe 'Usuário cadastra um veículo' do
     expect(page).to have_content 'Tipo: Carro'
     expect(page).to have_content 'Marca: Fiat'
     expect(page).to have_content 'Modelo: Doblo'
-    expect(page).to have_content 'Placa de identificação: ABC1D23'
+    expect(page).to have_content 'Placa de Identificação: ABC1D23'
     expect(page).to have_content 'Ano de fabricação: 2019'
     expect(page).to have_content 'Capacidade máxima de carga (peso): 150kg'
     expect(page).to have_content 'Status: Em manutenção'
@@ -74,7 +74,7 @@ describe 'Usuário cadastra um veículo' do
     fill_in 'Tipo', with: ''
     fill_in 'Marca', with: ''
     fill_in 'Modelo', with: ''
-    fill_in 'Placa de identificação', with: ''
+    fill_in 'Placa de Identificação', with: ''
     fill_in 'Ano de fabricação', with: ''
     fill_in 'Capacidade máxima de carga (peso)', with: nil
     click_on 'Gravar'

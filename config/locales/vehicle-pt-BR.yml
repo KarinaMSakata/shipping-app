@@ -9,7 +9,7 @@ pt-BR:
         sort: "Tipo"
         brand: "Marca"
         model: "Modelo"
-        identification: "Placa de identificação"
+        identification: "Placa de Identificação"
         year_manufacture: "Ano de fabricação"
         max_load: "Capacidade máxima de carga (peso)"
       vehicle/status:

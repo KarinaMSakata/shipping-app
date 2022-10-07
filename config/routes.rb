@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   resources :vehicles, only: [:new, :create, :show, :index, :edit, :update] do
     patch 'in_operation', on: :member
     patch 'in_maintenance', on: :member
+    get 'search', on: :collection
   end
+
 end

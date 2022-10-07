@@ -1,0 +1,11 @@
+<h1>Resultados da Busca por: <%= @identification %></h1>
+<h2><%= @vehicles.count %> <%= Vehicle.model_name.human(count: @vehicles.count).downcase %> <%= t(:found, count: @vehicles.count) %></h2>
+
+<% @vehicles.each do |v| %>
+  <p><%= Vehicle.human_attribute_name(:identification)%>: <%= link_to v.identification, v %></p>
+  <p><%= Vehicle.model_name.human %>: <%= v.description %></p>
+  <p><%= Vehicle.human_attribute_name(:status) %>: <%= Vehicle.human_attribute_name("status.#{v.status}") %></p>
+  <hr>
+<% end %>
+
+<%= link_to 'Voltar', vehicles_url%>

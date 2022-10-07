@@ -57,7 +57,6 @@ describe 'Ususário vê a listagem de modalidades de transporte cadastradas' do
 
     #Assert
     expect(page).to have_content 'Não existem modalidades cadastradas.'
-    expect(page).to have_content 'Clique aqui para cadastrar a primeira modalidade'
 
   end
 

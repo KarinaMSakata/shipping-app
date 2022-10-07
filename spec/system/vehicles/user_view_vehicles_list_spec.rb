@@ -58,7 +58,6 @@ describe 'Usuário vê a listagem de veículos' do
 
     #Assert
     expect(page).to have_content 'Não existem veículos cadastrados'
-    expect(page).to have_link 'Clique aqui para cadastrar o primeiro veículo'
 
   end
 end
