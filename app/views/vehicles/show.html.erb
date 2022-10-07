@@ -1,7 +1,19 @@
+<h1>Detalhes de <%= @vehicle.description %> </h1>
 <p><%= Vehicle.human_attribute_name(:sort) %>: <%= @vehicle.sort %></p>
 <p><%= Vehicle.human_attribute_name(:brand) %>: <%= @vehicle.brand %></p>
 <p><%= Vehicle.human_attribute_name(:model) %>: <%= @vehicle.model %></p>
 <p><%= Vehicle.human_attribute_name(:identification) %>: <%= @vehicle.identification %></p>
 <p><%= Vehicle.human_attribute_name(:year_manufacture) %>: <%= @vehicle.year_manufacture %></p>
 <p><%= Vehicle.human_attribute_name(:max_load) %>: <%= @vehicle.max_load %>kg</p>
+<p><%= Vehicle.human_attribute_name(:status) %>: <%= Vehicle.human_attribute_name("status.#{@vehicle.status}") %></p>
+
+<% if current_user.admin? %>
+  <% if @vehicle.in_maintenance? %>
+    <p><%= button_to Vehicle.human_attribute_name("status.in_operation"), in_operation_vehicle_url, { method: 'patch'} %></p>
+  <% else %>
+    <p><%= button_to Vehicle.human_attribute_name("status.in_maintenance"), in_maintenance_vehicle_url, { method: 'patch'} %></p>
+  <% end %>
+  <p><%= link_to 'Editar', edit_vehicle_url %></p>
+<% end %>
+<p><%= link_to 'Voltar', vehicles_url%></p>
 

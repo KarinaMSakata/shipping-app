@@ -3,7 +3,7 @@ describe 'Usuário se autentica' do
 
   it 'com sucesso' do
     #Arrange
-    User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+    User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
 
     #Act
     visit root_url
@@ -20,7 +20,7 @@ describe 'Usuário se autentica' do
 
   it 'se o email for de dominio @sistemadefrete.com.br' do
     #Arrange
-    User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password: 'password', role:'admin')
+    User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password: 'password', role: :admin)
 
     #Act 
     visit root_url
@@ -35,7 +35,7 @@ describe 'Usuário se autentica' do
 
   it 'e faz logout' do
      #Arrange
-     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password: 'password', role:'user')
+     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password: 'password', role: :user)
 
      #Act
      visit root_url

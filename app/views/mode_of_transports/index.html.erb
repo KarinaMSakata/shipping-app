@@ -3,11 +3,14 @@
 <% if @mode_of_transports.any? %> 
   <% @mode_of_transports.each do |mt| %>
     <% if mt.activated? %>
-      <h2><%= link_to mt.name, mt %></h2>
+      <p><%= link_to mt.name, mt %></p>
     <% else %>
-      <h2><%= link_to mt.name, mt %> [desativado]</h2>
+      <p><%= link_to mt.name, mt %> [<%= ModeOfTransport.human_attribute_name("status.disable") %>] </p>
     <% end %>
   <% end %>
 <% else %>
-  <%= 'Não existem modalidades cadastradas.' %>
+  <p>Não existem modalidades cadastradas.</p>
+  <% if current_user.admin? %>
+    <%= link_to 'Clique aqui para cadastrar a primeira modalidade', new_mode_of_transport_url %>
+  <% end %>
 <% end %>

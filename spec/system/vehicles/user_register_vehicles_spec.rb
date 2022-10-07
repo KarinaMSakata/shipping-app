@@ -58,6 +58,8 @@ describe 'Usuário cadastra um veículo' do
     expect(page).to have_content 'Placa de identificação: ABC1D23'
     expect(page).to have_content 'Ano de fabricação: 2019'
     expect(page).to have_content 'Capacidade máxima de carga (peso): 150kg'
+    expect(page).to have_content 'Status: Em manutenção'
+
   end
 
   it 'e dados são obrigatórios' do

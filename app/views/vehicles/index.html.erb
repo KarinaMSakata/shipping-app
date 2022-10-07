@@ -1,7 +1,16 @@
 <h1>Frota</h1>
-
+<br>
 <% if @vehicles.any? %>
   <% @vehicles.each do |v| %>
-    <p><%= v.sort %> <%= v.brand %> | <%= v.model%></p>
+    <% if v.in_operation? %>
+      <p><%= link_to v.description, v %> [<%= Vehicle.human_attribute_name("status.in_operation") %>]</p>
+    <% else %>
+      <p><%= link_to v.description, v %> [<%= Vehicle.human_attribute_name("status.in_maintenance") %>]</p>
+    <% end %>
   <% end %>
+<% else %>
+    <p>Não existem veículos cadastrados</p>
+    <% if current_user.admin? %>
+      <%= link_to 'Clique aqui para cadastrar o primeiro veículo', new_vehicle_url %>
+    <% end %>
 <% end %>

@@ -14,7 +14,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
 
   it 'a partir de uma opção no menu' do
     #Arrange
-    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
 
     #Act
     login_as(admin)
@@ -33,7 +33,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
 
   it 'com sucesso' do
     #Arrange
-    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
 
     #Act
     login_as(admin)
@@ -60,7 +60,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
 
   it 'e dados são obrigatórios' do
     #Arrange
-    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'admin')
+    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
     
     #Act
     login_as(admin)
@@ -87,7 +87,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
 
   it 'mas está autenticado como regular' do
    #Arrange
-   user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role:'user')
+   user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
 
    #Act
    login_as(user)

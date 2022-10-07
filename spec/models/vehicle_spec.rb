@@ -110,7 +110,7 @@ RSpec.describe Vehicle, type: :model do
   context 'uniqueness' do
     it 'placa deve ser única' do
       #Arrange
-      v = Vehicle.create!(sort: 'Carro', brand: 'Fiat', model: 'Doblo', identification:'ABC1D23', year_manufacture:'2019', max_load: 150)
+      v = Vehicle.create!(sort: 'Carro', brand: 'Fiat', model: 'Doblo', identification:'ABC1D23', year_manufacture:'2019', max_load: 150, status: :in_operation)
       other_v = Vehicle.new(identification: 'ABC1D23')
 
       #Act

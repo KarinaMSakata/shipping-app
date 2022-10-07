@@ -11,12 +11,10 @@ describe 'Usuário cria autenticação' do
     fill_in 'E-mail', with: 'maria@sistemadefrete.com.br'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
-    find("label", text:"Usuário Regular").click
     click_on 'Criar conta'
     
     #Assert
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
-    expect(page).to have_content 'Você é um usuário regular'
     expect(page).to have_content 'Olá, Maria!' 
     expect(page).to have_button 'Sair'
   end
@@ -48,7 +46,6 @@ describe 'Usuário cria autenticação' do
     fill_in 'E-mail', with: 'maria@gmail.com  '
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
-    find("label", text:"Usuário Regular").click
     click_on 'Criar conta'
     
     #Assert

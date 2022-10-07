@@ -115,9 +115,9 @@ RSpec.describe ModeOfTransport, type: :model do
         expect(mt.errors.include? :max_distance).to be true
       end
 
-      it 'peso máximo deve ser menor ou igual a 50' do
+      it 'peso máximo deve ser menor ou igual a 10000' do
         #Arrange
-        mt = ModeOfTransport.new(max_weight: 55)
+        mt = ModeOfTransport.new(max_weight: 10100)
 
         #Act
         mt.valid?

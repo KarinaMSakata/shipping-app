@@ -12,3 +12,8 @@ pt-BR:
         identification: "Placa de identificação"
         year_manufacture: "Ano de fabricação"
         max_load: "Capacidade máxima de carga (peso)"
+      vehicle/status:
+        in_maintenance: "Em manutenção"
+        in_operation: "Em operação"
+
+        

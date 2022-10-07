@@ -1,0 +1,28 @@
+<% if @vehicle.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <% @vehicle.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<%= form_with(model: @vehicle) do |f| %>
+  
+  <p><%= f.label :sort %>  
+  <%= f.text_field :sort %></p>  
+  <p><%= f.label :brand %> 
+  <%= f.text_field :brand %></p>
+  <p><%= f.label :model %>  
+  <%= f.text_field :model %></p>
+  <p><%= f.label :identification %> 
+  <%= f.text_field :identification %></p>
+  <p><%= f.label :year_manufacture %> 
+  <%= f.number_field :year_manufacture %></p>
+  <p><%= f.label :max_load %>
+  <%= f.number_field :max_load %></p>
+  <p><%= Vehicle.human_attribute_name(:status) %>: <%= Vehicle.human_attribute_name("status.#{@vehicle.status}") %></p>
+
+  <%= f.submit 'Gravar'%>
+<% end %>
+
+
+<%= link_to 'Voltar', root_url %>

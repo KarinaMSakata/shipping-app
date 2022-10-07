@@ -1,5 +1,5 @@
 class ModeOfTransportsController < ApplicationController
-  before_action :set_mode_of_transport, only:[:show, :edit, :update]
+  before_action :set_mode_of_transport, only:[:show, :edit, :update, :activated, :disable]
   before_action :only => [:new, :create, :edit, :update] do
     redirect_to root_url, notice: 'Você não possui permissão para acessar esta página!' unless current_user && current_user.admin?
   end
@@ -31,21 +31,22 @@ class ModeOfTransportsController < ApplicationController
   def edit; end
 
   def update
-    @mode_of_transport.update(mode_of_transport_params)
-    redirect_to @mode_of_transport, notice: 'Modalidade de Transporte atualizada com sucesso.'
-    
+    if @mode_of_transport.update(mode_of_transport_params)
+      redirect_to @mode_of_transport, notice: 'Modalidade de Transporte atualizada com sucesso.'
+    else 
+      flash.now.notice = "Não foi possível atualizar a modalidade de transporte."
+      render 'new'
+    end    
   end
 
   def activated
-    mode_of_transport = ModeOfTransport.find(params[:id])
-    mode_of_transport.activated!
-    redirect_to mode_of_transport_url(mode_of_transport.id)
+    @mode_of_transport.activated!
+    redirect_to @mode_of_transport
   end
 
   def disable
-    mode_of_transport = ModeOfTransport.find(params[:id])
-    mode_of_transport.disable!
-    redirect_to mode_of_transport_url(mode_of_transport.id) 
+    @mode_of_transport.disable!
+    redirect_to @mode_of_transport 
   end
   private
 

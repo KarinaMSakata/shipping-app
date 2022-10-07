@@ -6,5 +6,8 @@ Rails.application.routes.draw do
     patch 'disable', on: :member
   end
 
-  resources :vehicles, only: [:new, :create, :show, :index]
+  resources :vehicles, only: [:new, :create, :show, :index, :edit, :update] do
+    patch 'in_operation', on: :member
+    patch 'in_maintenance', on: :member
+  end
 end
