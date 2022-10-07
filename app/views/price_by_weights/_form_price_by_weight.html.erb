@@ -1,0 +1,18 @@
+<% if @price_by_weight.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <% @price_by_weight.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<%= form_with(model: @price_by_weight) do |f| %>
+  
+  <p><%= f.label :min_weight %>  
+  <%= f.number_field :min_weight %></p>  
+  <p><%= f.label :max_weight %> 
+  <%= f.number_field :max_weight %></p>
+  <p><%= f.label :price_per_km %>  
+  <%= f.number_field :price_per_km, step: :any %></p>
+  <%= f.submit 'Gravar'%>
+
+<% end %>

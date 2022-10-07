@@ -1,0 +1,5 @@
+<h1>Tabela <%= PriceByWeight.model_name.human %></h1>
+
+<p><%= PriceByWeight.human_attribute_name(:min_weight) %>: <%= @price_by_weight.min_weight %>kg</p>
+<p><%= PriceByWeight.human_attribute_name(:max_weight) %>: <%= @price_by_weight.max_weight %>kg</p>
+<p><%= PriceByWeight.human_attribute_name(:price_per_km) %>: <%= number_to_currency(@price_by_weight.price_per_km) %></p>
