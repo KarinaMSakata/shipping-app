@@ -5,12 +5,18 @@
     <tr>
       <th colspan= "2">Intervalo</th>
       <th><%= PriceByWeight.human_attribute_name(:price_per_km)%></th>
+      <% if current_user.admin? %>
+        <th>#</th>
+      <% end %>
     </tr>
     <% @price_by_weights.each do |pw| %>
       <tr>
         <td><%= pw.min_weight %>kg</td>
         <td><%= pw.max_weight %>kg</td>
         <td><%= number_to_currency(pw.price_per_km) %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Editar', edit_price_by_weight_url(pw.id) %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

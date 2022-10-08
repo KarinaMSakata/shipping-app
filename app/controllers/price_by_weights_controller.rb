@@ -1,5 +1,5 @@
 class PriceByWeightsController < ApplicationController 
-  before_action :only => [:new, :create] do
+  before_action :only => [:new, :create, :edit, :update] do
     redirect_to root_url, notice: 'Você não possui permissão para acessar esta página!' unless current_user && current_user.admin?
   end
   
@@ -23,6 +23,20 @@ class PriceByWeightsController < ApplicationController
 
   def index
     @price_by_weights = PriceByWeight.all
+  end
+
+  def edit
+    @price_by_weight = PriceByWeight.find(params[:id])
+  end
+
+  def update
+    @price_by_weight = PriceByWeight.find(params[:id])
+    if @price_by_weight.update(price_by_weight_params) 
+      redirect_to @price_by_weight, notice: 'Valores atualizados com sucesso.'
+    else
+      flash.now.notice= 'Não foi possivel atualizar os valores.'
+      render 'edit'
+    end
   end
 
   private
