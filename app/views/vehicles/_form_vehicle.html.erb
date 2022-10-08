@@ -1,8 +1,10 @@
 <% if @vehicle.errors.any? %>
   <p>Verifique os erros abaixo:</p>
-  <% @vehicle.errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
+  <ul>
+    <% @vehicle.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= form_with(model: @vehicle) do |f| %>

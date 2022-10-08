@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models: 
+      price_per_distance: 'Preço por Distância'
+    attributes:
+      price_per_distance:
+        min_distance: 'Distância mínima(km)'
+        max_distance: 'Distância máxima(km)'
+        price: 'Valor'
+  

@@ -1,8 +1,10 @@
 <% if @price_by_weight.errors.any? %>
   <p>Verifique os erros abaixo:</p>
-  <% @price_by_weight.errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
+  <ul>
+    <% @price_by_weight.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= form_with(model: @price_by_weight) do |f| %>

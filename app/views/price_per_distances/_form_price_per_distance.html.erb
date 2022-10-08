@@ -1,0 +1,20 @@
+<% if @price_per_distance.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @price_per_distance.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @price_per_distance) do |f| %>
+  
+  <p><%= f.label :min_distance, 'Distância mínima(km)' %>  
+  <%= f.number_field :min_distance %></p>  
+  <p><%= f.label :max_distance, 'Distância máxima(km)' %> 
+  <%= f.number_field :max_distance %></p>
+  <p><%= f.label :price, 'Valor'%>  
+  <%= f.number_field :price, step: :any %></p>
+  <%= f.submit 'Gravar' %>
+
+<% end %>
