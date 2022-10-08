@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models: 
+      delivery_time: 'Prazo de Entrega'
+    attributes:
+      delivery_time:
+        origin: 'Origem(km)'
+        destination: 'Destino(km)'
+        hours: 'Horas'
+ 
+  

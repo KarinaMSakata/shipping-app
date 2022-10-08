@@ -43,7 +43,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
     fill_in 'Nome', with: 'Moto'
     fill_in 'Distância Mínima Praticada', with: 1
     fill_in 'Distância Máxima Praticada', with: 80
-    fill_in 'Peso Mínimo', with: 0.50
+    fill_in 'Peso Mínimo', with: 1
     fill_in 'Peso Máximo', with: 30
     fill_in 'Taxa Fixa', with: 5
     click_on 'Gravar'
@@ -53,7 +53,7 @@ describe 'Usuário admin cadastra um modelo de transporte' do
     expect(page).to have_content 'MOTO'
     expect(page).to have_content 'Distância Mínima Praticada: 1km'
     expect(page).to have_content 'Distância Máxima Praticada: 80km'
-    expect(page).to have_content 'Peso Mínimo: 0kg'
+    expect(page).to have_content 'Peso Mínimo: 1kg'
     expect(page).to have_content 'Peso Máximo: 30kg'
     expect(page).to have_content 'Taxa Fixa: R$ 5,00'
   end

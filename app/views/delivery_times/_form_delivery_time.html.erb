@@ -1,0 +1,19 @@
+<% if @delivery_time.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @delivery_time.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @delivery_time) do |f| %>
+  
+  <p><%= f.label :origin %>  
+  <%= f.number_field :origin %></p> 
+  <p><%= f.label :destination %>  
+  <%= f.number_field :destination %></p> 
+  <p><%= f.label :hours %>  
+  <%= f.number_field :hours %></p> 
+  <%= f.submit 'Gravar'%>
+<% end %>
