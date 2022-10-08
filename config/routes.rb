@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   end
 
   resources :price_by_weights, only: [:new, :create, :show, :index, :edit, :update]
-  resources :price_per_distances, only: [:new, :create, :show]
+  resources :price_per_distances, only: [:new, :create, :show, :index, :edit, :update]
 end

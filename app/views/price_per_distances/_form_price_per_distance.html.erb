@@ -9,11 +9,11 @@
 
 <%= form_with(model: @price_per_distance) do |f| %>
   
-  <p><%= f.label :min_distance, 'Distância mínima(km)' %>  
+  <p><%= f.label :min_distance %>  
   <%= f.number_field :min_distance %></p>  
-  <p><%= f.label :max_distance, 'Distância máxima(km)' %> 
+  <p><%= f.label :max_distance %> 
   <%= f.number_field :max_distance %></p>
-  <p><%= f.label :price, 'Valor'%>  
+  <p><%= f.label :price %>  
   <%= f.number_field :price, step: :any %></p>
   <%= f.submit 'Gravar' %>
 

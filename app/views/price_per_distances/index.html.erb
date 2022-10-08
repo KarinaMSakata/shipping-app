@@ -1,0 +1,27 @@
+<h1>Tabela de <%= PricePerDistance.model_name.human %></h1>
+
+<br>
+<% if @price_per_distances.any? %>
+  <table style="width:70%">
+    <tr>
+      <th colspan= "2">Intervalo</th>
+      <th><%= PricePerDistance.human_attribute_name(:price) %></th>
+			<% if current_user.admin? %>
+				<th>#</th>
+			<% end %>
+    </tr>
+    <% @price_per_distances.each do |pd| %>
+      <tr>
+        <td><%= pd.min_distance %>km</td>
+        <td><%= pd.max_distance %>km</td>
+        <td><%= number_to_currency(pd.price) %></td>
+				<% if current_user.admin? %>
+					<td><%= link_to 'Editar', edit_price_per_distance_url(pd.id) %></td>
+				<% end %>
+    <% end %>
+<% else %>
+  <p>Não existem valores cadastrados.</p>	
+	<% if current_user.admin? %>
+		<%= link_to 'Clique aqui para cadastrar os primeiros valores', new_price_per_distance_url%>
+	<% end %> 
+<% end %>      
