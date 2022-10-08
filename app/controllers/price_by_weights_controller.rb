@@ -21,6 +21,10 @@ class PriceByWeightsController < ApplicationController
     @price_by_weight = PriceByWeight.find(params[:id])
   end
 
+  def index
+    @price_by_weights = PriceByWeight.all
+  end
+
   private
 
   def price_by_weight_params

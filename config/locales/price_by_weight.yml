@@ -6,4 +6,4 @@ pt-BR:
       price_by_weight:
         min_weight: "Peso mínimo(kg)"
         max_weight: "Peso máximo(kg)"
-        price_per_km: "Valor/km"
+        price_per_km: "Valor/Km"

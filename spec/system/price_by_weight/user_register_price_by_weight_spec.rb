@@ -13,7 +13,7 @@ describe 'Usuário cadastra nova configuração de preço por peso' do
     #Assert
     expect(page).to have_field 'Peso mínimo(kg)'
     expect(page).to have_field 'Peso máximo(kg)'
-    expect(page).to have_field 'Valor/km'
+    expect(page).to have_field 'Valor/Km'
   end
 
   it 'e deve estar autenticado como admin' do
@@ -41,14 +41,14 @@ describe 'Usuário cadastra nova configuração de preço por peso' do
     click_on 'Cadastrar Preço por Peso'
     fill_in 'Peso mínimo(kg)', with: 1
     fill_in 'Peso máximo(kg)', with: 10
-    fill_in 'Valor/km', with: 0.50
+    fill_in 'Valor/Km', with: 0.50
     click_on 'Gravar'
 
     #Assert
     expect(page).to have_content 'Configuração de preço cadastrada com sucesso!'
     expect(page).to have_content 'Peso mínimo(kg): 1kg'
     expect(page).to have_content 'Peso máximo(kg): 10kg'
-    expect(page).to have_content 'Valor/km: R$ 0,50'
+    expect(page).to have_content 'Valor/Km: R$ 0,50'
   end
 
   it 'e dados são obrigatórios' do
@@ -62,7 +62,7 @@ describe 'Usuário cadastra nova configuração de preço por peso' do
     click_on 'Cadastrar Preço por Peso'
     fill_in 'Peso mínimo(kg)', with: nil
     fill_in 'Peso máximo(kg)', with: nil
-    fill_in 'Valor/km', with: nil
+    fill_in 'Valor/Km', with: nil
     click_on 'Gravar'
 
     #Assert
