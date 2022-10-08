@@ -16,9 +16,11 @@
         <td><%= pd.max_distance %>km</td>
         <td><%= number_to_currency(pd.price) %></td>
 				<% if current_user.admin? %>
-					<td><%= link_to 'Editar', edit_price_per_distance_url(pd.id) %></td>
+          <td><%= link_to 'Editar', edit_price_per_distance_url(pd.id) %></td>
 				<% end %>
+      </tr>  
     <% end %>
+  </table>
 <% else %>
   <p>Não existem valores cadastrados.</p>	
 	<% if current_user.admin? %>

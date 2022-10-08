@@ -4,3 +4,5 @@
 <p><%= DeliveryTime.human_attribute_name(:destination)%>: <%= @delivery_time.destination %>km</p>
 <p><%= DeliveryTime.human_attribute_name(:hours)%>: <%= @delivery_time.hours %> horas</p>
 
+<p><%= link_to 'Voltar para Tabela', delivery_times_url %></p>
+<p><%= link_to 'Editar', edit_delivery_time_url(@delivery_time.id) %></p>

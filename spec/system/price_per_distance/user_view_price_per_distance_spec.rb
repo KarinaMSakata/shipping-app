@@ -61,6 +61,5 @@ describe 'Usuário vê tabela de preços por distância' do
 
     #Assert
     expect(page).to have_content 'Não existem valores cadastrados.'
-
   end
 end

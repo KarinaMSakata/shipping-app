@@ -1,0 +1,37 @@
+<h1>Tabela de <%= DeliveryTime.model_name.human%></h1>
+
+<br>
+<% if @delivery_times.any? %>
+  <table style="width:70%">
+    <tr>
+      <th colspan= "2">Intervalo de distância entre:</th>
+      <th><%= DeliveryTime.human_attribute_name(:hours) %></th>
+      <% if current_user.admin? %>
+        <th>#</th>
+      <% end %>
+    </tr>
+    <tr>
+      <th><%= DeliveryTime.human_attribute_name(:origin) %></th>
+      <th><%= DeliveryTime.human_attribute_name(:destination) %></th>
+      <th>#</th>
+      <% if current_user.admin? %>
+        <th>#</th>
+      <% end %>
+    </tr>
+    <% @delivery_times.each do |dt| %>
+      <tr>
+        <td><%= dt.origin %>km</td>
+        <td><%= dt.destination %>km</td>
+        <td><%= dt.hours %> horas</td>
+        <% if current_user.admin? %>
+         <td><%= link_to 'Editar', edit_delivery_time_url(dt) %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Não existem valores cadastrados.</p> 
+  <% if current_user.admin? %>
+   <%= link_to 'Clique aqui para cadastrar os primeiros valores', new_delivery_time_url%>
+  <% end %> 
+<% end %>

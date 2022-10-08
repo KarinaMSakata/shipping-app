@@ -6,6 +6,6 @@ pt-BR:
       delivery_time:
         origin: 'Origem(km)'
         destination: 'Destino(km)'
-        hours: 'Horas'
+        hours: 'Prazo'
  
   

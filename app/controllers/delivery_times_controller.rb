@@ -1,6 +1,6 @@
 class DeliveryTimesController < ApplicationController
-  before_action :set_delivery_time, only: [:show]
-  before_action :only => [:new, :create] do
+  before_action :set_delivery_time, only: [:show, :edit, :update]
+  before_action :only => [:new, :create, :edit, :update] do
     redirect_to root_url, notice: 'Você não possui permissão para acessar esta página!' unless current_user && current_user.admin?
   end
 
@@ -18,7 +18,21 @@ class DeliveryTimesController < ApplicationController
     end
   end
 
-  def show
+  def show; end
+
+  def index
+    @delivery_times = DeliveryTime.all
+  end
+
+  def edit; end
+
+  def update
+    if @delivery_time.update(delivery_time_params)
+      redirect_to @delivery_time, notice: 'Prazo atualizado com sucesso!'
+    else
+      flash.now.notice = 'Não foi possível atualizar este prazo.'
+      render 'edit'
+    end
   end
 
   private

@@ -13,7 +13,7 @@ describe 'Usuário cadastra nova configuração de prazo por distância' do
     #Assert
     expect(page).to have_field 'Origem(km)'
     expect(page).to have_field 'Destino(km)'
-    expect(page).to have_field 'Horas'
+    expect(page).to have_field 'Prazo'
   end
 
   it 'e deve estar autenticado como admin' do
@@ -41,14 +41,14 @@ describe 'Usuário cadastra nova configuração de prazo por distância' do
     click_on 'Cadastrar Prazo de Entrega'
     fill_in 'Origem(km)', with: 1
     fill_in 'Destino(km)', with: 100
-    fill_in 'Horas', with: 48
+    fill_in 'Prazo', with: 48
     click_on 'Gravar'
 
     #Assert
     expect(page).to have_content 'Prazo de Entrega cadastrado com sucesso!'
     expect(page).to have_content 'Origem(km): 1km'
     expect(page).to have_content 'Destino(km): 100km'
-    expect(page).to have_content 'Horas: 48 horas'
+    expect(page).to have_content 'Prazo: 48 horas'
   end
 
   it 'e dados são obrigatórios' do
@@ -62,7 +62,7 @@ describe 'Usuário cadastra nova configuração de prazo por distância' do
     click_on 'Cadastrar Prazo de Entrega'
     fill_in 'Origem(km)', with: nil
     fill_in 'Destino(km)', with: nil
-    fill_in 'Horas', with: nil
+    fill_in 'Prazo', with: nil
     click_on 'Gravar'
 
     #Assert
