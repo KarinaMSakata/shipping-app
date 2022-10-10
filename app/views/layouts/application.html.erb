@@ -30,13 +30,13 @@
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" <%= link_to 'Cadastrar Veículo', new_vehicle_url %></li></a>
                     <li><a class="dropdown-item" <%= link_to 'Veículos Cadastrados', vehicles_url %></li></a>
-                    </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Modalidade de Transporte
-                    </a>
-                    <ul class="dropdown-menu">
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Modalidade de Transporte
+                  </a>
+                  <ul class="dropdown-menu">
                     <li><a class="dropdown-item" <%= link_to 'Cadastrar Nova Modalidade', new_mode_of_transport_url %></li></a>
                     <li><a class="dropdown-item" <%= link_to 'Modalidades Cadastradas', mode_of_transports_url %></li></a>
                     <li><hr class="dropdown-divider"></li>
@@ -50,8 +50,17 @@
                     <li><a class="dropdown-item" <%= link_to 'Tabela de Prazo de Entrega', delivery_times_url %></li></a>
                   </ul>
                 </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Ordem de Serviço
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" <%= link_to 'Cadastrar Ordem de Serviço', new_create_order_of_service_url %></li></a>
+                  </ul>
+                </li>
               </ul>      
           </div>    
+
         <% if user_signed_in? %>
           <p>Olá, <%= current_user.name %>!</p>
           <p>Você é um usuário <%= User.human_attribute_name("role.#{current_user.role}") %> </p>

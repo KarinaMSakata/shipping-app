@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_08_190421) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_222436) do
+  create_table "create_order_of_services", force: :cascade do |t|
+    t.string "output_address"
+    t.string "output_city"
+    t.string "output_state"
+    t.string "product_code"
+    t.integer "cargo_weight"
+    t.string "receiver_address"
+    t.string "receiver_city"
+    t.string "receiver_state"
+    t.string "receiver_name"
+    t.string "receiver_cpf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "height"
+    t.integer "width"
+    t.integer "depth"
+    t.date "receiver_birth"
+  end
+
   create_table "delivery_times", force: :cascade do |t|
     t.integer "origin"
     t.integer "destination"

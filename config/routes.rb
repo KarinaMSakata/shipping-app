@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :price_by_weights, only: [:new, :create, :show, :index, :edit, :update]
   resources :price_per_distances, only: [:new, :create, :show, :index, :edit, :update]
   resources :delivery_times, only:[:new, :create, :show, :index, :edit, :update]
+  resources :create_order_of_services, only: [:new, :create, :show]
 end

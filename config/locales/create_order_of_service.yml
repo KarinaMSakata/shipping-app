@@ -1,0 +1,20 @@
+pt-BR:
+  activerecord:
+    models: 
+      create_order_of_service: "Cadastrar Ordem de Serviço" 
+    attributes:
+      create_order_of_service:
+        output_address: "Endereço"
+        output_city: "Cidade"
+        output_state: "Estado"
+        product_code: "Código do produto"
+        height: "Altura(cm)"
+        width: "Largura(cm)"
+        depth: "Profundidade(cm)"
+        cargo_weight: "Peso(Kg)"
+        receiver_name: "Nome completo do destinatário"
+        receiver_cpf: "CPF do destinatário" 
+        receiver_birth: "Data de nascimento do destinatário"
+        receiver_address: "Endereço de entrega"
+        receiver_city: "Cidade de entrega"
+        receiver_state: "Estado de entrega"
