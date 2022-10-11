@@ -1,0 +1,12 @@
+<h1>Ordens de Serviço Pendentes</h1>
+
+<% if @create_orders.any? %>
+  <% @create_orders.each do |os| %>
+    <p><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= link_to os.code, os %></p>
+    <p><%= CreateOrderOfService.human_attribute_name(:receiver_name) %>: <%= os.receiver_name%></p>
+    <hr>
+  <% end %>
+
+<% else %>
+    <p>Não existem ordens de serviço pendentes</p>
+<% end %>

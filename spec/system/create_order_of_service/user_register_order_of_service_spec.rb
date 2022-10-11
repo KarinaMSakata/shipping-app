@@ -26,9 +26,11 @@ describe 'Usuário cadastra nova ordem de serviço' do
     expect(page).to have_field 'Endereço de entrega'
     expect(page).to have_field 'Cidade de entrega'
     expect(page).to have_field 'Estado de entrega' 
-    expect(page).to have_field 'Nome completo do destinatário'
-    expect(page).to have_field 'CPF do destinatário'
-    expect(page).to have_field 'Data de nascimento do destinatário'
+    expect(page).to have_field 'Destinatário'
+    expect(page).to have_field 'CPF'
+    expect(page).to have_field 'Data de nascimento'
+    expect(page).to have_content 'Deslocamento a ser percorrido'
+    expect(page).to have_field 'Distância total(Km)'
   end
 
   it 'e deve estar autenticado como admin' do
@@ -48,7 +50,8 @@ describe 'Usuário cadastra nova ordem de serviço' do
   it 'com sucesso' do
     #Arrage
     admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
-
+    
+    allow(SecureRandom).to receive(:alphanumeric).and_return 'ABCDEFGHI123456'
     #Act
     login_as(admin)
     visit root_url
@@ -65,13 +68,16 @@ describe 'Usuário cadastra nova ordem de serviço' do
     fill_in 'Endereço de entrega', with: 'Rua das Flores, 20'
     fill_in 'Cidade de entrega', with: 'Osasco'
     fill_in 'Estado de entrega', with: 'SP'
-    fill_in 'Nome completo do destinatário', with: 'João de Almeida Santos'
-    fill_in 'CPF do destinatário', with: '37688849020'
-    fill_in 'Data de nascimento do destinatário', with: '23/01/1990'
+    fill_in 'Destinatário', with: 'João de Almeida Santos'
+    fill_in 'CPF', with: '37688849020'
+    fill_in 'Data de nascimento', with: '23/01/1990'
+    fill_in 'Distância total(Km)', with: 41
     click_on 'Gravar'
       
     #Assert
     expect(page).to have_content 'Ordem de Serviço cadastrada com sucesso.'
+    expect(page).to have_content 'Status: pendente'
+    expect(page).to have_content 'Código de rastreio: ABCDEFGHI123456'
     expect(page).to have_content 'Dados para retirada do produto'
     expect(page).to have_content 'Endereço: Av. das Pitangueiras, 100'
     expect(page).to have_content 'Cidade: São Paulo'
@@ -86,9 +92,11 @@ describe 'Usuário cadastra nova ordem de serviço' do
     expect(page).to have_content 'Endereço de entrega: Rua das Flores, 20'
     expect(page).to have_content 'Cidade de entrega: Osasco'
     expect(page).to have_content 'Estado de entrega: SP'
-    expect(page).to have_content 'Nome completo do destinatário: João de Almeida Santos'
-    expect(page).to have_content 'CPF do destinatário: 376.888.490-20'
-    expect(page).to have_content 'Data de nascimento do destinatário: 23/01/1990'
+    expect(page).to have_content 'Destinatário: João de Almeida Santos'
+    expect(page).to have_content 'CPF: 376.888.490-20'
+    expect(page).to have_content 'Data de nascimento: 23/01/1990'
+    expect(page).to have_content 'Deslocamento a ser percorrido'
+    expect(page).to have_content 'Distância total(Km): 41km'
   end
 
   it 'e dados são obrigatórios' do
@@ -111,9 +119,10 @@ describe 'Usuário cadastra nova ordem de serviço' do
     fill_in 'Endereço de entrega', with: ''
     fill_in 'Cidade de entrega', with: ''
     fill_in 'Estado de entrega', with: ''
-    fill_in 'Nome completo do destinatário', with: ''
-    fill_in 'CPF do destinatário', with: ''
-    fill_in 'Data de nascimento do destinatário', with: ''
+    fill_in 'Destinatário', with: ''
+    fill_in 'CPF', with: ''
+    fill_in 'Data de nascimento', with: ''
+    fill_in 'Distância total(Km)', with: ''
     click_on 'Gravar'
       
     #Assert

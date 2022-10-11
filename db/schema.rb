@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_222436) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_012149) do
   create_table "create_order_of_services", force: :cascade do |t|
     t.string "output_address"
     t.string "output_city"
@@ -28,6 +28,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_222436) do
     t.integer "width"
     t.integer "depth"
     t.date "receiver_birth"
+    t.integer "total_distance"
+    t.integer "status", default: 0
+    t.string "code"
   end
 
   create_table "delivery_times", force: :cascade do |t|

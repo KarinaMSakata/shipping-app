@@ -1,15 +1,18 @@
-  <% def formata_cpf(receiver_cpf) %>
-    <% cpf_formatado = receiver_cpf[0..2] %>
-    <% cpf_formatado << '.' %>
-    <% cpf_formatado << receiver_cpf[3..5] %>
-    <% cpf_formatado << '.' %>
-    <% cpf_formatado << receiver_cpf[6..8] %>
-    <% cpf_formatado << '-' %>
-    <% cpf_formatado << receiver_cpf[9..10] %>
-    <% cpf_formatado %>
-  <% end %>
+<% def formata_cpf(receiver_cpf) %>
+<% cpf_formatado = receiver_cpf[0..2] %>
+<% cpf_formatado << '.' %>
+<% cpf_formatado << receiver_cpf[3..5] %>
+<% cpf_formatado << '.' %>
+<% cpf_formatado << receiver_cpf[6..8] %>
+<% cpf_formatado << '-' %>
+<% cpf_formatado << receiver_cpf[9..10] %>
+<% cpf_formatado %>
+<% end %>
 
 <h1>Ordem de Serviço</h1>
+
+  <h2><%= CreateOrderOfService.human_attribute_name(:status) %>: <%= CreateOrderOfService.human_attribute_name("status.#{@create_os.status}") %></h2>
+  <h2><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= @create_os.code %></h2>
 
   <h2>Dados para retirada do produto</h2>
     <p><%= CreateOrderOfService.human_attribute_name(:output_address) %>: <%= @create_os.output_address %></p>
@@ -17,9 +20,15 @@
     <%= CreateOrderOfService.human_attribute_name(:output_state) %>: <%= @create_os.output_state %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:product_code) %>: <%= @create_os.product_code %></p>
   <h5>Dimensões do produto</h5>
-    <p><%= CreateOrderOfService.human_attribute_name(:height) %>: <%= @create_os.height %>cm</p>
-    <p><%= CreateOrderOfService.human_attribute_name(:width) %>: <%= @create_os.width %>cm</p>
-    <p><%= CreateOrderOfService.human_attribute_name(:depth) %>: <%= @create_os.depth %>cm</p>
+    <% if @create_os.height?%>
+      <p><%= CreateOrderOfService.human_attribute_name(:height) %>: <%= @create_os.height %>cm
+    <% end %>
+    <% if @create_os.width? %>
+      <%= CreateOrderOfService.human_attribute_name(:width) %>: <%= @create_os.width %>cm
+    <% end %>
+    <% if @create_os.depth? %>
+      <%= CreateOrderOfService.human_attribute_name(:depth) %>: <%= @create_os.depth %>cm</p>
+    <% end %>
     <p><%= CreateOrderOfService.human_attribute_name(:cargo_weight) %>: <%= @create_os.cargo_weight %>kg</p>
   <h2>Dados para entrega do produto</h2>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_address) %>: <%= @create_os.receiver_address %></p>
@@ -28,3 +37,10 @@
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_name) %>: <%= @create_os.receiver_name %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_cpf) %>: <%= formata_cpf(@create_os.receiver_cpf) %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_birth) %>: <%= l(@create_os.receiver_birth) %></p>
+  <h2>Deslocamento a ser percorrido</h2>
+    <p><%= CreateOrderOfService.human_attribute_name(:total_distance) %>: <%= @create_os.total_distance %>km</p>
+
+  <% if current_user.admin? %>
+    <%= link_to 'Editar', edit_create_order_of_service_url(@create_os.id)%>
+  <% end %>
+  <%= link_to 'Voltar para lista', create_order_of_services_url %>
