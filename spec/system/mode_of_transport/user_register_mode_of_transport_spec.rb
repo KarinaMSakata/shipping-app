@@ -56,6 +56,8 @@ describe 'Usuário admin cadastra um modelo de transporte' do
     expect(page).to have_content 'Peso Mínimo: 1kg'
     expect(page).to have_content 'Peso Máximo: 30kg'
     expect(page).to have_content 'Taxa Fixa: R$ 5,00'
+    expect(page).to have_content 'Status: Desativado'
+
   end
 
   it 'e dados são obrigatórios' do

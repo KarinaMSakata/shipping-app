@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 
-<%= form_with(model: @price_by_weight) do |f| %>
+<%= form_with(model: [@mode_of_transport, @price_by_weight]) do |f| %>
   
   <p><%= f.label :min_weight %>  
   <%= f.number_field :min_weight %></p>  
@@ -18,3 +18,5 @@
   <%= f.submit 'Gravar'%>
 
 <% end %>
+<br>
+<%= link_to 'Voltar', @mode_of_transport%>

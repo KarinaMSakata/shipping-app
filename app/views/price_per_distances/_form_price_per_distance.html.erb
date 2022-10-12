@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 
-<%= form_with(model: @price_per_distance) do |f| %>
+<%= form_with(model: [@mode_of_transport, @price_per_distance]) do |f| %>
   
   <p><%= f.label :min_distance %>  
   <%= f.number_field :min_distance %></p>  

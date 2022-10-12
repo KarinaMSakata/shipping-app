@@ -264,5 +264,22 @@ RSpec.describe CreateOrderOfService, type: :model do
       #Assert
       expect(other_os.code).not_to eq os.code
     end
+
+    it 'e não deve ser modificado' do
+      #Arrange
+      os = CreateOrderOfService.create!(output_address: 'Av. das Pitangueiras, 100', output_city: 'São Paulo', output_state: 'SP',
+                                        product_code: 'LG-LCD-49-5502-P', height: 50, width: 90, depth: 5, cargo_weight: 14,
+                                        receiver_address: 'Rua das Flores, 20', receiver_city: 'Osasco', receiver_state: 'SP', 
+                                        receiver_name: 'João de Almeida Santos', receiver_cpf: '37688849020', receiver_birth: '23/01/1990',
+                                        total_distance: 41)        
+     
+      original_code = os.code
+      #Act
+
+      os.update!(output_address: 'Av. das Amoreiras, 100')
+
+      #Assert
+      expect(os.code).to eq original_code
+    end
   end
 end

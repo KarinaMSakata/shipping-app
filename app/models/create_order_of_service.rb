@@ -9,7 +9,7 @@ class CreateOrderOfService < ApplicationRecord
   validates :product_code, length: {maximum: 18}
   validates :receiver_cpf, length: {is: 11}
 
-  before_validation :generate_code
+  before_validation :generate_code, on: :create
 
   private
 

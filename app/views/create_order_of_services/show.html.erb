@@ -41,6 +41,6 @@
     <p><%= CreateOrderOfService.human_attribute_name(:total_distance) %>: <%= @create_os.total_distance %>km</p>
 
   <% if current_user.admin? %>
-    <%= link_to 'Editar', edit_create_order_of_service_url(@create_os.id)%>
+    <p><%= link_to 'Editar', edit_create_order_of_service_url(@create_os.id)%></p>
   <% end %>
-  <%= link_to 'Voltar para lista', create_order_of_services_url %>
+  <p><%= link_to 'Voltar para lista', create_order_of_services_url %></p>

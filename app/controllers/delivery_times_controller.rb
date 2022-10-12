@@ -5,13 +5,16 @@ class DeliveryTimesController < ApplicationController
   end
 
   def new
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
     @delivery_time = DeliveryTime.new
   end
 
   def create
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
     @delivery_time = DeliveryTime.new(delivery_time_params)
+    @delivery_time.mode_of_transport = @mode_of_transport
     if @delivery_time.save
-      redirect_to @delivery_time, notice: 'Prazo de Entrega cadastrado com sucesso!'
+      redirect_to @mode_of_transport, notice: 'Prazo de Entrega cadastrado com sucesso!'
     else
       flash.now.notice = "Não foi possível cadastrar esta configuração de preço."
       render 'new'
@@ -24,11 +27,15 @@ class DeliveryTimesController < ApplicationController
     @delivery_times = DeliveryTime.all
   end
 
-  def edit; end
+  def edit
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
+  end
 
   def update
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
+    @delivery_time.mode_of_transport = @mode_of_transport
     if @delivery_time.update(delivery_time_params)
-      redirect_to @delivery_time, notice: 'Prazo atualizado com sucesso!'
+      redirect_to @mode_of_transport, notice: 'Prazo atualizado com sucesso!'
     else
       flash.now.notice = 'Não foi possível atualizar este prazo.'
       render 'edit'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_012149) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_211353) do
   create_table "create_order_of_services", force: :cascade do |t|
     t.string "output_address"
     t.string "output_city"
@@ -39,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_012149) do
     t.integer "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mode_of_transport_id", null: false
+    t.index ["mode_of_transport_id"], name: "index_delivery_times_on_mode_of_transport_id"
   end
 
   create_table "mode_of_transports", force: :cascade do |t|
@@ -59,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_012149) do
     t.decimal "price_per_km"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mode_of_transport_id", null: false
+    t.index ["mode_of_transport_id"], name: "index_price_by_weights_on_mode_of_transport_id"
   end
 
   create_table "price_per_distances", force: :cascade do |t|
@@ -67,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_012149) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mode_of_transport_id", null: false
+    t.index ["mode_of_transport_id"], name: "index_price_per_distances_on_mode_of_transport_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,4 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_012149) do
     t.integer "status", default: 0
   end
 
+  add_foreign_key "delivery_times", "mode_of_transports"
+  add_foreign_key "price_by_weights", "mode_of_transports"
+  add_foreign_key "price_per_distances", "mode_of_transports"
 end

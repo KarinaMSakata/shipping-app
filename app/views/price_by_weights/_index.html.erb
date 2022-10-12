@@ -1,5 +1,5 @@
 <h1>Tabela de <%= PriceByWeight.model_name.human%></h1>
-<br>
+
 <% if @price_by_weights.any? %>
   <table style="width:70%">
     <tr>
@@ -15,14 +15,19 @@
         <td><%= pw.max_weight %>kg</td>
         <td><%= number_to_currency(pw.price_per_km) %></td>
         <% if current_user.admin? %>
-          <td><%= link_to 'Editar', edit_price_by_weight_url(pw.id) %></td>
+          <td><%= link_to 'Editar', edit_mode_of_transport_price_by_weight_url(mode_of_transport_id: pw.id) %></td>
         <% end %>
       </tr>
-    <% end %>
+      <% end %>
+      <% if current_user.admin? %>
+        <tr>
+          <th colspan= "4"><%= link_to 'Cadastrar Novo Preço por Peso', new_mode_of_transport_price_by_weight_url(mode_of_transport_id: @mode_of_transport.id) %></th>
+        </tr>
+      <% end %>
   </table>
 <% else %>
   <p>Não existem valores cadastrados.</p>
   <% if current_user.admin? %>
-    <%= link_to 'Clique aqui para cadastrar os primeiros valores', new_price_by_weight_url%>
+    <%= link_to 'Cadastrar Novo Preço por Peso', new_mode_of_transport_price_by_weight_url(mode_of_transport_id: @mode_of_transport.id) %>
   <% end %>
 <% end %>

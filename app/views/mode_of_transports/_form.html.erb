@@ -22,11 +22,10 @@
   <%= f.number_field :max_weight %></p>
   <p><%= f.label :fixed_rate %> (R$)
   <%= f.number_field :fixed_rate %></p>
-  <p><%= ModeOfTransport.human_attribute_name(:status) %>: <%= ModeOfTransport.human_attribute_name("status.#{@mode_of_transport.status}") %></p>
-
   <%= f.submit 'Gravar' %>
   
 <% end %>
+
 
 
 <%= link_to 'Voltar', root_url %>

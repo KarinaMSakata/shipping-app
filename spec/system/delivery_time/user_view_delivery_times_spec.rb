@@ -1,41 +1,18 @@
 require 'rails_helper'
 describe 'Usuário vê tabela de prazos de entrega' do
-  it 'e deve estar autenticado' do
-    #Arrange
-    #Act
-    visit root_url
-    click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-
-    #Assert
-    expect(current_url).to eq new_user_session_url
-  end
-
-  it 'a partir de uma opção no menu' do
+  it 'de acordo com a modalidade de transporte' do
     #Arrange
     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
-
-    #Act
-    login_as(user)
-    visit root_url
-    click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-
-    #Assert
-    expect(current_url).to eq delivery_times_url
-  end
-
-  it 'com sucesso' do
-    #Arrange
-    user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
-    other_time = DeliveryTime.create!(origin: 101, destination: 300, hours: 48)
+    mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24, mode_of_transport: mt)
+    other_time = DeliveryTime.create!(origin: 101, destination: 300, hours: 48, mode_of_transport: mt)
    
     #Act
     login_as(user)
     visit root_url
     click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
+    click_on 'Modalidades Cadastradas'
+    click_on 'Normal'
 
     #Assert
     expect(page).to have_content 'Tabela de Prazo de Entrega'
@@ -54,12 +31,14 @@ describe 'Usuário vê tabela de prazos de entrega' do
   it 'e não existem prazos cadastrados' do
     #Arrange
     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
-   
+    mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+
     #Act
     login_as(user)
     visit root_url
     click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
+    click_on 'Modalidades Cadastradas'
+    click_on 'Normal'
 
     #Assert
     expect(page).to have_content 'Não existem valores cadastrados.'

@@ -1,6 +1,5 @@
 <h1>Tabela de <%= DeliveryTime.model_name.human%></h1>
 
-<br>
 <% if @delivery_times.any? %>
   <table style="width:70%">
     <tr>
@@ -24,14 +23,19 @@
         <td><%= dt.destination %>km</td>
         <td><%= dt.hours %> horas</td>
         <% if current_user.admin? %>
-         <td><%= link_to 'Editar', edit_delivery_time_url(dt) %></td>
+         <td><%= link_to 'Editar',  edit_mode_of_transport_delivery_time_url(mode_of_transport_id: dt.id) %></td>
       <% end %>
       </tr>
     <% end %>
+    <% if current_user.admin? %>
+    <tr>
+      <th colspan= "4">   <%= link_to 'Cadastrar Novo Prazo de Entrega', new_mode_of_transport_delivery_time_url(mode_of_transport_id: @mode_of_transport.id)%></th>
+    </tr>
+  <% end %>
   </table>
 <% else %>
   <p>Não existem valores cadastrados.</p> 
   <% if current_user.admin? %>
-   <%= link_to 'Clique aqui para cadastrar os primeiros valores', new_delivery_time_url%>
+   <%= link_to 'Cadastrar Novo Prazo de Entrega', new_mode_of_transport_delivery_time_url(mode_of_transport_id: @mode_of_transport.id)%>
   <% end %> 
 <% end %>

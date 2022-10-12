@@ -1,16 +1,20 @@
 require 'rails_helper'
 describe 'Usuário edita um prazo de entrega' do
-  it 'a partir de uma opção na página da tabela de prazo' do
+  it 'a partir da modalidade de transporte' do
     #Arrange
     admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
+    mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24, mode_of_transport: mt)
 
     #Act
     login_as(admin)
     visit root_url
     click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-    click_on 'Editar'
+    click_on 'Modalidades Cadastradas'
+    click_on 'Normal'
+    within 'table' do
+      click_on 'Editar'
+    end
 
     #Assert
     expect(page).to have_content 'Editar Prazo de Entrega'
@@ -22,13 +26,15 @@ describe 'Usuário edita um prazo de entrega' do
   it 'e deve estar autenticado como admin' do
     #Arrange
     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
+    mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24, mode_of_transport: mt)
 
     #Act
     login_as(user)
     visit root_url
     click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
+    click_on 'Modalidades Cadastradas'
+    click_on 'Normal'
       
     #Assert
     expect(page).not_to have_link 'Editar'
@@ -37,36 +43,43 @@ describe 'Usuário edita um prazo de entrega' do
   it 'com sucesso' do
     #Arrange
     admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
+    mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24, mode_of_transport: mt)
 
     #Act
     login_as(admin)
     visit root_url
     click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-    click_on 'Editar'
+    click_on 'Modalidades Cadastradas'
+    click_on 'Normal'
+    within 'table' do
+      click_on 'Editar'
+    end
     fill_in 'Destino(km)', with: 200
     fill_in 'Prazo', with: 36
     click_on 'Gravar'
 
     #Assert
     expect(page).to have_content 'Prazo atualizado com sucesso!'
-    expect(page).to have_content 'Destino(km): 200km'
-    expect(page).to have_content 'Prazo: 36 horas'
+    expect(page).to have_css 'table', :text=> '200km'
+    expect(page).to have_css 'table', :text=>  '36 horas'
   end
 
   it 'e campos permanecem obrigatórios' do 
     #Arrange
     admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
+    mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24, mode_of_transport: mt)
 
     #Act
     login_as(admin)
     visit root_url
     click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-    click_on 'Editar'
-    fill_in 'Origem(km)', with: nil
+    click_on 'Modalidades Cadastradas'
+    click_on 'Normal'
+    within 'table' do
+      click_on 'Editar'
+    end
     fill_in 'Destino(km)', with: nil
     fill_in 'Prazo', with: nil
     click_on 'Gravar'
@@ -74,41 +87,4 @@ describe 'Usuário edita um prazo de entrega' do
     #Assert
     expect(page).to have_content 'Não foi possível atualizar este prazo.'
   end
-
-  it 'e volta para a tabela' do 
-    #Arrange
-    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
-
-    #Act
-    login_as(admin)
-    visit root_url
-    click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-    click_on 'Editar'
-    click_on 'Gravar'
-    click_on 'Voltar para Tabela'
-
-    #Assert
-    expect(current_url).to eq delivery_times_url
-  end
-
-  it 'e volta para a tela de edição' do 
-    #Arrange
-    admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
-    one_time = DeliveryTime.create!(origin: 1, destination: 100, hours: 24)
-
-    #Act
-    login_as(admin)
-    visit root_url
-    click_on 'Modalidade de Transporte'
-    click_on 'Tabela de Prazo de Entrega'
-    click_on 'Editar'
-    click_on 'Gravar'
-    click_on 'Editar'
-
-    #Assert
-    expect(current_url).to eq edit_delivery_time_url(one_time.id)
-  end
-
 end

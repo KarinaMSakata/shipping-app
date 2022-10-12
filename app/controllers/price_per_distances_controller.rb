@@ -5,13 +5,16 @@ class PricePerDistancesController < ApplicationController
   end
   
   def new
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
     @price_per_distance = PricePerDistance.new
   end
 
   def create
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
     @price_per_distance = PricePerDistance.new(price_per_distance_params)
+    @price_per_distance.mode_of_transport = @mode_of_transport
     if @price_per_distance.save
-      redirect_to @price_per_distance, notice: 'Configuração de preço cadastrada com sucesso!'
+      redirect_to @mode_of_transport, notice: 'Configuração de preço cadastrada com sucesso!'
     else
       flash.now.notice = 'Não foi possível cadastrar esta configuração de preço.'
       render 'new'
@@ -25,11 +28,15 @@ class PricePerDistancesController < ApplicationController
     @price_per_distances = PricePerDistance.all
   end
 
-  def edit; end
+  def edit
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
+  end
 
   def update
+    @mode_of_transport = ModeOfTransport.find(params[:mode_of_transport_id])
+    @price_per_distance.mode_of_transport = @mode_of_transport
     if @price_per_distance.update(price_per_distance_params)
-      redirect_to @price_per_distance, notice: 'Valores atualizados com sucesso.'
+      redirect_to @mode_of_transport, notice: 'Valores atualizados com sucesso.'
     else
       flash.now.notice = 'Não foi possivel atualizar os valores.'
       render 'edit'

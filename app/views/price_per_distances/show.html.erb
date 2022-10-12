@@ -1,8 +1,0 @@
-<h1><%= PricePerDistance.model_name.human %></h1>
-
-<p><%= PricePerDistance.human_attribute_name(:min_distance)%>: <%= @price_per_distance.min_distance %>km</p>
-<p><%= PricePerDistance.human_attribute_name(:max_distance)%>: <%= @price_per_distance.max_distance %>km</p>
-<p><%= PricePerDistance.human_attribute_name(:price)%>: <%= number_to_currency(@price_per_distance.price) %></p>
-
-<p><%= link_to 'Voltar para Tabela', price_per_distances_url %></p>
-<p><%= link_to 'Editar', edit_price_per_distance_url(@price_per_distance.id) %></p>

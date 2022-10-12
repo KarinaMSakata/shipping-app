@@ -18,7 +18,11 @@ class ModeOfTransportsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @price_by_weights = PriceByWeight.where(mode_of_transport: @mode_of_transport)
+    @price_per_distances = PricePerDistance.where(mode_of_transport: @mode_of_transport)
+    @delivery_times = DeliveryTime.where(mode_of_transport: @mode_of_transport)
+  end
 
   def index
     if current_user.admin?
@@ -36,7 +40,7 @@ class ModeOfTransportsController < ApplicationController
     else 
       flash.now.notice = "Não foi possível atualizar a modalidade de transporte."
       render 'new'
-    end    
+    end     
   end
 
   def activated
@@ -48,6 +52,7 @@ class ModeOfTransportsController < ApplicationController
     @mode_of_transport.disable!
     redirect_to @mode_of_transport 
   end
+  
   private
 
   def set_mode_of_transport 

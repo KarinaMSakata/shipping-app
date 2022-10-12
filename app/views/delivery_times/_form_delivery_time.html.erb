@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 
-<%= form_with(model: @delivery_time) do |f| %>
+<%= form_with(model: [@mode_of_transport, @delivery_time]) do |f| %>
   
   <p><%= f.label :origin %>  
   <%= f.number_field :origin %></p> 
