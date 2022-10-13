@@ -40,6 +40,16 @@
   <h2>Deslocamento a ser percorrido</h2>
     <p><%= CreateOrderOfService.human_attribute_name(:total_distance) %>: <%= @create_os.total_distance %>km</p>
 
+
+  <h2>Modalidade e Veículo Selecionados</h2>
+  <% @create_os.send_options.each do |option| %>
+    <p><%= ModeOfTransport.model_name.human %>: <%= option.mode_of_transport.name %></p>
+    <p><%= DeliveryTime.model_name.human %>: <%= option.mode_of_transport.delivery_times.last.hours %> horas</p>
+    <p>Valor Total: <%= number_to_currency(option.mode_of_transport.calcula_taxas) %></p>
+    <p><%= Vehicle.model_name.human(count: 1)%>: <%= option.vehicle.description %></p>
+
+  <% end %>
+
   <% if current_user.admin? %>
     <p><%= link_to 'Editar', edit_create_order_of_service_url(@create_os.id)%></p>
   <% end %>

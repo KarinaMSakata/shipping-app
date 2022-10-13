@@ -1,4 +1,5 @@
 class CreateOrderOfService < ApplicationRecord
+  has_many :send_options
   enum status: {pending: 0, initiated: 2}
   validates :output_address, :output_city, :output_state, :product_code, :cargo_weight, 
             :receiver_address, :receiver_city, :receiver_state, :receiver_name, :receiver_cpf, 
