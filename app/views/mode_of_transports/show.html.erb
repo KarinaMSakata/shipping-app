@@ -6,14 +6,13 @@
 <p><%= ModeOfTransport.human_attribute_name(:fixed_rate) %>: <%= number_to_currency(@mode_of_transport.fixed_rate) %></p>
 <p><%= ModeOfTransport.human_attribute_name(:status) %>: <%= ModeOfTransport.human_attribute_name("status.#{@mode_of_transport.status}") %></p>
 
-<% if @mode_of_transport.disable? %>
-  <p><%= button_to 'Ativar Modalidade', activated_mode_of_transport_url, { method: 'patch'} %></p>
-<% else %>
-  <p><%= button_to 'Desativar Modalidade',  disable_mode_of_transport_url, { method: 'patch'} %></p>
-<% end %>
-
 <% if current_user.admin?%>
-  <p><%= link_to 'Editar', edit_mode_of_transport_url %></p>
+  <% if @mode_of_transport.disable? %>
+    <p><%= button_to 'Ativar Modalidade', activated_mode_of_transport_url, { method: 'patch'} %></p>
+  <% else %>
+    <p><%= button_to 'Desativar Modalidade',  disable_mode_of_transport_url, { method: 'patch'} %></p>
+  <% end %>
+    <p><%= link_to 'Editar', edit_mode_of_transport_url %></p>
 <% end %>
 
 <%= render 'price_by_weights/index' %>

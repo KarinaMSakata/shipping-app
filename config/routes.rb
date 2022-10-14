@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     patch 'in_maintenance', on: :member
     get 'search', on: :collection
   end
-
-  resources :create_order_of_services, only: [:new, :create, :show, :index, :edit, :update]
+  
+  resources :create_order_of_services, only: [:new, :create, :show, :index, :edit, :update] do
+    resources :send_options, only: [:new, :create]
+  end
 end
