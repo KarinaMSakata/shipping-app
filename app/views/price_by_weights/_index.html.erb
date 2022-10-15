@@ -15,7 +15,7 @@
         <td><%= pw.max_weight %>kg</td>
         <td><%= number_to_currency(pw.price_per_km) %></td>
         <% if current_user.admin? %>
-          <td><%= link_to 'Editar', edit_mode_of_transport_price_by_weight_url(mode_of_transport_id: pw.id) %></td>
+          <td><%= link_to 'Editar', edit_mode_of_transport_price_by_weight_url(@mode_of_transport.id, pw.id) %></td>
         <% end %>
       </tr>
       <% end %>

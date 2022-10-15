@@ -32,7 +32,7 @@
     <p><%= CreateOrderOfService.human_attribute_name(:cargo_weight) %>: <%= @create_os.cargo_weight %>kg</p>
   <h2>Dados para entrega do produto</h2>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_address) %>: <%= @create_os.receiver_address %></p>
-    <p><%= CreateOrderOfService.human_attribute_name(:receiver_city) %>: <%= @create_os.receiver_city %>
+    <p><%= CreateOrderOfService.human_attribute_name(:receiver_city) %>: <%= @create_os.receiver_city %> |
     <%= CreateOrderOfService.human_attribute_name(:receiver_state) %>: <%= @create_os.receiver_state %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_name) %>: <%= @create_os.receiver_name %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_cpf) %>: <%= formata_cpf(@create_os.receiver_cpf) %></p>
@@ -42,12 +42,13 @@
 
 
   <h2>Modalidade e Veículo Selecionados</h2>
+  
   <%= link_to 'Adicionar Modalidade e Veículo',  new_create_order_of_service_send_option_url(create_order_of_service_id: @create_os.id) %>
 
   <% @create_os.send_options.each do |option| %>
     <p><%= ModeOfTransport.model_name.human %>: <%= option.mode_of_transport.name %></p>
-    <p><%= DeliveryTime.model_name.human %>: <%= option.mode_of_transport.delivery_times.last.hours %> horas</p>
-    <p>Valor Total: <%= number_to_currency(option.mode_of_transport.calculator) %></p>
+    <p><%= DeliveryTime.model_name.human %>: <%= option.mode_of_transport.delivery_time(@create_os)%> horas</p>
+    <p>Valor Total: <%= number_to_currency(option.mode_of_transport.price_weight(@create_os) + option.mode_of_transport.price_distance(@create_os) + option.mode_of_transport.fixed_rate) %></p>
     <p><%= Vehicle.model_name.human(count: 1)%>: <%= option.vehicle.description %></p>
 
   <% end %>

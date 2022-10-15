@@ -37,7 +37,7 @@ describe 'Usuário adiciona Modalidade e Veículo na ordem de serviço' do
     click_on 'Ordens de Serviço Pendentes'
     click_on os.code
     click_on 'Adicionar Modalidade e Veículo'
-    select 'Normal | Prazo de Entrega: 48 horas', from: 'Modalidade de Transporte'
+    select 'Normal', from: 'Modalidade de Transporte'
     check 'Veículo: Carro Fiat | Doblo'
     click_on 'Confirmar'
 
@@ -92,8 +92,8 @@ describe 'Usuário adiciona Modalidade e Veículo na ordem de serviço' do
 
     #Assert
     expect(page).to have_content "Modalidade e Transporte para a Ordem de Serviço #{os.code}"
-    expect(page).to have_select 'Modalidade de Transporte', text: 'Express | Prazo de Entrega: 24 horas'
-    expect(page).not_to have_select 'Modalidade de Transporte', text: 'Normal | Prazo de Entrega: 48 horas'
+    expect(page).to have_select 'Modalidade de Transporte', text: 'Express'
+    expect(page).not_to have_select 'Modalidade de Transporte', text: 'Normal'
     expect(page).to have_field 'Veículo: Carro Fiat | Doblo'
 
   end

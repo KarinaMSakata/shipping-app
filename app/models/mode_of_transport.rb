@@ -10,25 +10,42 @@ class ModeOfTransport < ApplicationRecord
   validates :min_distance, :min_weight, numericality: {greater_than_or_equal_to: 1}
   validates :max_distance, numericality: {less_than: 4_400}
   validates :max_weight, numericality: {less_than_or_equal_to: 10000}
-
-  def calculator
-    preço_km = (price_by_weights.last.price_per_km)*(send_options.last.create_order_of_service.total_distance)
-    preço_distancia = (price_per_distances.last.price)
-    tx_fixa = (fixed_rate)
-    total = preço_km + preço_distancia + tx_fixa
-    total
-  end
   
+
   def full_description
-    "#{name} | Prazo de Entrega: #{delivery_times.last.hours} horas"
+    "#{name} | Prazo de Entrega: horas"
   end
 
-  def available_for?(create_order_of_service)
-    if min_weight <= create_order_of_service.cargo_weight && max_weight >= create_order_of_service.cargo_weight && min_distance <= create_order_of_service.total_distance && max_distance >= create_order_of_service.total_distance
-      true
+def price_weight(create_order_of_service)
+  price_by_weights.each do |p|
+    if p.min_weight <= create_order_of_service.cargo_weight && p.max_weight >= create_order_of_service.cargo_weight
+      return (p.price_per_km)*(create_order_of_service.total_distance)
     else
-      false
+      return 'Não há valor disponível'
     end
   end
+end
+
+def price_distance(create_order_of_service)
+  price_per_distances.each do |d|
+    if d.min_distance <= create_order_of_service.total_distance && d.max_distance >= create_order_of_service.total_distance
+      return (d.price)
+    else
+      return 'Não há valor disponível'
+    end
+  end
+end
+
+def delivery_time(create_order_of_service)
+  delivery_times.each do |dt|
+    if dt.origin <= create_order_of_service.total_distance && dt.destination >= create_order_of_service.total_distance
+      return (dt.hours)
+    else
+      return 'Não há valor disponível'
+    end
+  end
+end
+
+
 
 end

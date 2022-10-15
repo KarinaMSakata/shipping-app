@@ -23,7 +23,7 @@
         <td><%= dt.destination %>km</td>
         <td><%= dt.hours %> horas</td>
         <% if current_user.admin? %>
-         <td><%= link_to 'Editar',  edit_mode_of_transport_delivery_time_url(mode_of_transport_id: dt.id) %></td>
+         <td><%= link_to 'Editar',  edit_mode_of_transport_delivery_time_url(@mode_of_transport.id, dt.id) %></td>
       <% end %>
       </tr>
     <% end %>

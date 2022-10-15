@@ -15,7 +15,7 @@
         <td><%= pd.max_distance %>km</td>
         <td><%= number_to_currency(pd.price) %></td>
 				<% if current_user.admin? %>
-          <td><%= link_to 'Editar', edit_mode_of_transport_price_per_distance_url(mode_of_transport_id: pd.id) %></td>
+          <td><%= link_to 'Editar', edit_mode_of_transport_price_per_distance_url(@mode_of_transport.id, pd.id) %></td>
 				<% end %>
       </tr>  
     <% end %>
