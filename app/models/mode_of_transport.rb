@@ -10,11 +10,6 @@ class ModeOfTransport < ApplicationRecord
   validates :min_distance, :min_weight, numericality: {greater_than_or_equal_to: 1}
   validates :max_distance, numericality: {less_than: 4_400}
   validates :max_weight, numericality: {less_than_or_equal_to: 10000}
-  
-
-  def full_description
-    "#{name} | Prazo de Entrega: horas"
-  end
 
 def price_weight(create_order_of_service)
   price_by_weights.each do |p|

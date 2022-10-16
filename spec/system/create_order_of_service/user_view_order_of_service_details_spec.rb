@@ -1,6 +1,6 @@
 require 'rails_helper'
 describe 'Usuário vê detalhes da ordem de serviço' do
-  it 'a partir da lista de ordens pendentes' do
+  it 'a partir da lista de ordens' do
     #Arrange
     user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
     os = CreateOrderOfService.create!(output_address: 'Av. das Pitangueiras, 100', output_city: 'São Paulo', output_state: 'SP',
@@ -13,12 +13,12 @@ describe 'Usuário vê detalhes da ordem de serviço' do
     login_as(user)
     visit root_url
     click_on 'Ordem de Serviço'
-    click_on 'Ordens de Serviço Pendentes'
+    click_on 'Listar Ordens de Serviço'
     click_on os.code
 
     #Assert
     expect(page).to have_content 'Ordem de Serviço'
-    expect(page).to have_content 'Status: pendente'
+    expect(page).to have_content 'Status: Pendente'
     expect(page).to have_content "Código de rastreio: #{os.code}"
     expect(page).to have_content 'Dados para retirada do produto'
     expect(page).to have_content 'Endereço: Av. das Pitangueiras, 100'
@@ -68,7 +68,7 @@ describe 'Usuário vê detalhes da ordem de serviço' do
     login_as(user)
     visit root_url
     click_on 'Ordem de Serviço'
-    click_on 'Ordens de Serviço Pendentes'
+    click_on 'Listar Ordens de Serviço'
     click_on os.code
 
     #Assert

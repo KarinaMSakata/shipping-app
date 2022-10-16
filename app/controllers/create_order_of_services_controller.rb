@@ -1,5 +1,5 @@
 class CreateOrderOfServicesController < ApplicationController 
-  before_action :set_create_os, only: [:show, :edit, :update]
+  before_action :set_create_os, only: [:show, :edit, :update, :pending, :initiated]
   before_action :only => [:new, :create, :edit, :update] do
     redirect_to root_url, notice: 'Você não possui permissão para acessar esta página!' unless current_user && current_user.admin?
   end
@@ -22,6 +22,7 @@ class CreateOrderOfServicesController < ApplicationController
 
   def index
     @create_orders = CreateOrderOfService.pending
+    @create_orders_initiated = CreateOrderOfService.initiated
   end
 
   def edit; end
@@ -33,6 +34,19 @@ class CreateOrderOfServicesController < ApplicationController
       flash.now.notice= 'Não foi possível atualizar a ordem de serviço.'
       render 'edit'
     end  
+  end
+
+  def pending
+    @create_os.pending!
+    redirect_to @create_os
+  end
+
+  def initiated
+    @create_os.initiated!
+    @create_os.send_options.each do |op|
+      op.vehicle.in_maintenance!
+    end
+    redirect_to @create_os
   end
 
   private

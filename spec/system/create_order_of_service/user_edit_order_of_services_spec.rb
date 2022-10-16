@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário edita uma ordem de serviço pendente' do 
-  it 'a partir da página de os pendentes' do
+  it 'a partir da página de listagem' do
     #Arrange
     admin = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :admin)
     os = CreateOrderOfService.create!(output_address: 'Av. das Pitangueiras, 100', output_city: 'São Paulo', output_state: 'SP',
@@ -14,7 +14,7 @@ describe 'Usuário edita uma ordem de serviço pendente' do
     login_as(admin)
     visit root_url
     click_on 'Ordem de Serviço'
-    click_on 'Ordens de Serviço Pendentes'
+    click_on 'Listar Ordens de Serviço'
     click_on os.code
     click_on 'Editar'
 
@@ -54,7 +54,7 @@ describe 'Usuário edita uma ordem de serviço pendente' do
     visit root_url
     expect(page).not_to have_link 'Editar'
     click_on 'Ordem de Serviço'
-    click_on 'Ordens de Serviço Pendentes'
+    click_on 'Listar Ordens de Serviço'
     click_on os.code
       
     #Assert
@@ -74,7 +74,7 @@ describe 'Usuário edita uma ordem de serviço pendente' do
     visit root_url
     expect(page).not_to have_link 'Editar'
     click_on 'Ordem de Serviço'
-    click_on 'Ordens de Serviço Pendentes'
+    click_on 'Listar Ordens de Serviço'
     click_on os.code
     click_on 'Editar'
     fill_in 'Endereço', with: 'Av. Piratininga, 100'
@@ -100,7 +100,7 @@ describe 'Usuário edita uma ordem de serviço pendente' do
     visit root_url
     expect(page).not_to have_link 'Editar'
     click_on 'Ordem de Serviço'
-    click_on 'Ordens de Serviço Pendentes'
+    click_on 'Listar Ordens de Serviço'
     click_on os.code
     click_on 'Editar'
     click_on 'Gravar'

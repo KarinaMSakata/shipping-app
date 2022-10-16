@@ -1,10 +1,3 @@
 <h1>Modalidade e Transporte para a Ordem de Serviço <%= @create_os.code %> </h1>
 
-<%= form_with(model: [@create_os, @send_option]) do |f| %>
-  <p><%= f.label :mode_of_transport_id, 'Modalidade de Transporte'%>
-  <%= f.collection_select :mode_of_transport_id, @modes, :id, :name %></p>
-  <p><%= f.check_box :vehicle_id %>
-  <%= f.label :vehicle_id, "#{Vehicle.model_name.human(count: 1)}: #{@vehicle.description}" %></p>
-  <p><%= f.submit 'Confirmar' %></p> 
-
-<% end %>
+<%= render 'form_send_options'%>

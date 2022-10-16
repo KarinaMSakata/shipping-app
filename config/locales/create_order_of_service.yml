@@ -21,5 +21,5 @@ pt-BR:
         total_distance: "Distância total(Km)"
         code: "Código de rastreio"
       create_order_of_service/status:
-        pending: "pendente"
-        initiated: "em andamento"
+        pending: "Pendente"
+        initiated: "Em andamento"

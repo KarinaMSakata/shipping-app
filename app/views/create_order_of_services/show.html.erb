@@ -42,17 +42,21 @@
 
 
   <h2>Modalidade e Veículo Selecionados</h2>
-  
-  <%= link_to 'Adicionar Modalidade e Veículo',  new_create_order_of_service_send_option_url(create_order_of_service_id: @create_os.id) %>
-
-  <% @create_os.send_options.each do |option| %>
-    <p><%= ModeOfTransport.model_name.human %>: <%= option.mode_of_transport.name %></p>
-    <p><%= DeliveryTime.model_name.human %>: <%= option.mode_of_transport.delivery_time(@create_os)%> horas</p>
-    <p>Valor Total: <%= number_to_currency(option.mode_of_transport.price_weight(@create_os) + option.mode_of_transport.price_distance(@create_os) + option.mode_of_transport.fixed_rate) %></p>
-    <p><%= Vehicle.model_name.human(count: 1)%>: <%= option.vehicle.description %></p>
-
+  <% if @create_os.send_options.any? %>
+    <% @create_os.send_options.each do |option| %>
+        <p><%= ModeOfTransport.model_name.human %>: <%= option.mode_of_transport.name %></p>
+        <p><%= DeliveryTime.model_name.human %>: <%= option.mode_of_transport.delivery_time(@create_os)%> horas</p>
+        <p>Valor Total: <%= number_to_currency(option.mode_of_transport.price_weight(@create_os).to_s.to_d + option.mode_of_transport.price_distance(@create_os).to_s.to_d + option.mode_of_transport.fixed_rate.to_s.to_d) %></p>
+        <p><%= Vehicle.model_name.human(count: 1)%>: <%= option.vehicle.description %></p>
+        <%= link_to 'Alterar Modalidade', edit_create_order_of_service_send_option_url(@create_os.id, option.id) %>
+      <% end %>
+  <% else %>
+    <%= link_to 'Adicionar Modalidade e Veículo',  new_create_order_of_service_send_option_url(create_order_of_service_id: @create_os.id) %>
   <% end %>
-
+  <br>
+  <br>
+  <%= button_to 'Iniciar Ordem de Serviço', initiated_create_order_of_service_url, {method: 'patch'}%>
+<br>
   <% if current_user.admin? %>
     <p><%= link_to 'Editar', edit_create_order_of_service_url(@create_os.id)%></p>
   <% end %>

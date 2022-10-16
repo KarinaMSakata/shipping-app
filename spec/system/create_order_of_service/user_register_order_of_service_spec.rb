@@ -76,7 +76,7 @@ describe 'Usuário cadastra nova ordem de serviço' do
       
     #Assert
     expect(page).to have_content 'Ordem de Serviço cadastrada com sucesso.'
-    expect(page).to have_content 'Status: pendente'
+    expect(page).to have_content 'Status: Pendente'
     expect(page).to have_content 'Código de rastreio: ABCDEFGHI123456'
     expect(page).to have_content 'Dados para retirada do produto'
     expect(page).to have_content 'Endereço: Av. das Pitangueiras, 100'

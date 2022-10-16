@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
   
   resources :create_order_of_services, only: [:new, :create, :show, :index, :edit, :update] do
-    resources :send_options, only: [:new, :create]
+    patch 'pending', on: :member
+    patch 'initiated', on: :member
+    resources :send_options, only: [:new, :create, :edit, :update]
   end
 end
