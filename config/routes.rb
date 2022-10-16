@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     patch 'initiated', on: :member
     patch 'finish', on: :member
     resources :send_options, only: [:new, :create, :edit, :update]
+    get 'search_os', on: :collection
   end
 end

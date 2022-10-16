@@ -24,8 +24,10 @@ describe 'Usuário busca por um veículo' do
     click_on 'Veículos Cadastrados'
 
     #Assert
-    expect(page).not_to have_field 'Buscar Veículo'
-    expect(page).not_to have_button 'Buscar'  
+    within ('main') do
+      expect(page).not_to have_field 'Buscar Veículo'
+      expect(page).not_to have_button 'Buscar' 
+    end 
   end
 
   it 'e encontra veículo através da placa' do
@@ -39,8 +41,10 @@ describe 'Usuário busca por um veículo' do
     visit root_url
     click_on 'Frota'
     click_on 'Veículos Cadastrados'
-    fill_in 'Buscar Veículo', with: 'ABC'
-    click_on 'Buscar'
+    within 'main' do
+      fill_in 'Buscar Veículo', with: 'ABC'
+      click_on 'Buscar'
+    end
 
     #Assert
     expect(page).to have_content 'Resultados da Busca por: ABC'
@@ -61,9 +65,11 @@ describe 'Usuário busca por um veículo' do
     visit root_url
     click_on 'Frota'
     click_on 'Veículos Cadastrados'
-    fill_in 'Buscar Veículo', with: 'CDF'
-    click_on 'Buscar'
-    click_on 'CDF4G56'
+    within 'main' do
+      fill_in 'Buscar Veículo', with: 'CDF'
+      click_on 'Buscar'
+      click_on 'CDF4G56'
+    end
 
     #Assert
     expect(current_url).to eq vehicle_url(vehicle.id)
@@ -79,10 +85,12 @@ describe 'Usuário busca por um veículo' do
     visit root_url
     click_on 'Frota'
     click_on 'Veículos Cadastrados'
-    fill_in 'Buscar Veículo', with: 'ABC'
-    click_on 'Buscar'
-    click_on 'Voltar'
-    
+    within 'main' do
+      fill_in 'Buscar Veículo', with: 'ABC'
+      click_on 'Buscar'
+      click_on 'Voltar'
+    end
+
     #Assert
     expect(current_url).to eq vehicles_url
   end

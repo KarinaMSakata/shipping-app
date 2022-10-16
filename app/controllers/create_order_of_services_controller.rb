@@ -58,6 +58,10 @@ class CreateOrderOfServicesController < ApplicationController
     redirect_to @create_os
   end
 
+  def search_os
+    @code = params["query"]
+    @order_service = CreateOrderOfService.find_by(code: @code)
+  end
   private
 
   def create_os_params
