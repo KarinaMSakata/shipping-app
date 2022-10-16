@@ -2,8 +2,8 @@
 <h1>Ordens de Serviço </h1>
 
 <!-PENDING->
-<% if @create_orders.any? %>
-  <% @create_orders.each do |os| %>
+<% if @order_pending.any? %>
+  <% @order_pending.each do |os| %>
     <p><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= link_to os.code, os %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_name) %>: <%= os.receiver_name%></p>
     <p><%= CreateOrderOfService.human_attribute_name(:status) %>: <%= CreateOrderOfService.human_attribute_name("status.#{os.status}")%></p>
@@ -19,8 +19,8 @@
 
 <!-INITIATED->
 
-<% if @create_orders_initiated.any? %>
-  <% @create_orders_initiated.each do |os| %>
+<% if @order_initiated.any? %>
+  <% @order_initiated.each do |os| %>
     <p><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= link_to os.code, os %></p>
     <p><%= CreateOrderOfService.human_attribute_name(:receiver_name) %>: <%= os.receiver_name%></p>
     <p><%= CreateOrderOfService.human_attribute_name(:status) %>: <%= CreateOrderOfService.human_attribute_name("status.#{os.status}")%></p>
@@ -29,4 +29,18 @@
 
 <% else %>
     <p>Não existem ordens de serviço em andamento</p>
+<% end %>
+
+<!-FINISH ->
+
+<% if @order_finish.any? %>
+  <% @order_finish.each do |os| %>
+    <p><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= link_to os.code, os %></p>
+    <p><%= CreateOrderOfService.human_attribute_name(:receiver_name) %>: <%= os.receiver_name%></p>
+    <p><%= CreateOrderOfService.human_attribute_name(:status) %>: <%= CreateOrderOfService.human_attribute_name("status.#{os.status}")%></p>
+    <hr>
+  <% end %>
+
+<% else %>
+    <p>Não existem ordens de serviço concluídas</p>
 <% end %>

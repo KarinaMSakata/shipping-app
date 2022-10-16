@@ -1,5 +1,5 @@
 class CreateOrderOfServicesController < ApplicationController 
-  before_action :set_create_os, only: [:show, :edit, :update, :pending, :initiated]
+  before_action :set_create_os, only: [:show, :edit, :update, :pending, :initiated, :finish]
   before_action :only => [:new, :create, :edit, :update] do
     redirect_to root_url, notice: 'Você não possui permissão para acessar esta página!' unless current_user && current_user.admin?
   end
@@ -21,8 +21,9 @@ class CreateOrderOfServicesController < ApplicationController
   def show; end
 
   def index
-    @create_orders = CreateOrderOfService.pending
-    @create_orders_initiated = CreateOrderOfService.initiated
+    @order_pending = CreateOrderOfService.pending
+    @order_initiated = CreateOrderOfService.initiated
+    @order_finish = CreateOrderOfService.finish
   end
 
   def edit; end
@@ -45,6 +46,14 @@ class CreateOrderOfServicesController < ApplicationController
     @create_os.initiated!
     @create_os.send_options.each do |op|
       op.vehicle.in_maintenance!
+    end
+    redirect_to @create_os
+  end
+
+  def finish
+    @create_os.finish!
+    @create_os.send_options.each do |op|
+      op.vehicle.in_operation!
     end
     redirect_to @create_os
   end

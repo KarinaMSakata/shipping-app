@@ -23,3 +23,4 @@ pt-BR:
       create_order_of_service/status:
         pending: "Pendente"
         initiated: "Em andamento"
+        finish: "Concluído"
