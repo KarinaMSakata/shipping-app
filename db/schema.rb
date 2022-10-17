@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_13_013740) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_033358) do
   create_table "create_order_of_services", force: :cascade do |t|
     t.string "output_address"
     t.string "output_city"
@@ -33,13 +33,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_013740) do
     t.string "code"
   end
 
+  create_table "delays", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delivery_times", force: :cascade do |t|
     t.integer "origin"
     t.integer "destination"
-    t.integer "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mode_of_transport_id", null: false
+    t.integer "hours"
     t.index ["mode_of_transport_id"], name: "index_delivery_times_on_mode_of_transport_id"
   end
 
@@ -81,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_013740) do
     t.integer "create_order_of_service_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "estimated_delivery_date"
     t.index ["create_order_of_service_id"], name: "index_send_options_on_create_order_of_service_id"
     t.index ["mode_of_transport_id"], name: "index_send_options_on_mode_of_transport_id"
     t.index ["vehicle_id"], name: "index_send_options_on_vehicle_id"

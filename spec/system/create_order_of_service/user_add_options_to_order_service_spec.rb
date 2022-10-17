@@ -46,7 +46,7 @@ describe 'Usuário adiciona Modalidade e Veículo na ordem de serviço' do
     expect(page).to have_content 'Modalidade e Veículo adicionados com sucesso.'
     expect(page).to have_content 'Modalidade e Veículo Selecionados'
     expect(page).to have_content 'Modalidade de Transporte: Normal'
-    expect(page).to have_content 'Prazo de Entrega: 48 horas'
+    expect(page).to have_content "Prazo de Entrega: 48 horas"
     expect(page).to have_content 'Valor Total: R$ 39,50'
     expect(page).to have_content 'Veículo: Carro Fiat | Doblo'
 

@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     patch 'finish', on: :member
     resources :send_options, only: [:new, :create, :edit, :update]
     get 'search_os', on: :collection
+    get 'feedback', on: :member
+    resources :delays, only: [:new, :create]
   end
 end

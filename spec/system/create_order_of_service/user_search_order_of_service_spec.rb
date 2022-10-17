@@ -14,8 +14,6 @@ describe 'Usuário não autenticado busca por um pedido' do
 
   it 'e encontra um pedido' do 
     #Arrange
-    user = User.create!(name: 'Karina', email: 'karina@sistemadefrete.com.br', password:'password', role: :user)
-
     mt = ModeOfTransport.create!(name: 'Normal', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
 
     time = DeliveryTime.create!(origin: 1, destination: 100, hours: 48, mode_of_transport: mt)
@@ -44,6 +42,19 @@ describe 'Usuário não autenticado busca por um pedido' do
     expect(page).to have_content 'Objeto Postado: São Paulo/SP'
     expect(page).to have_content 'Destino: Rua das Flores, 20 - Osasco/SP'
     expect(page).to have_content 'Veículo da entrega: Carro Fiat | Doblo - Placa ABC1D23'
-    expect(page).to have_content 'Previsão de entrega: 48 horas'
+    expect(page).to have_content "Previsão de entrega: #{I18n.localize(Time.now + (48*3600), format: :long)}"
+  end
+
+  it 'e não encontra o pedido' do 
+    #Arrange
+    #Act
+    visit root_url
+    fill_in 'Acompanhe sua encomenda', with: "ABCDEFGHJ101215"
+    click_on 'Buscar'
+
+    #Assert
+    expect(page).to have_content 'Objeto não encontrado, verifique o código informado'
+    
+
   end
 end

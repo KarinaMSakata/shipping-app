@@ -2,6 +2,7 @@ class CreateOrderOfService < ApplicationRecord
   has_many :send_options
   has_many :mode_of_transports, through: :send_options
   has_many :vehicles, through: :send_options
+  has_many :delays
   
   enum status: {pending: 0, initiated: 2, finish: 4}
   validates :output_address, :output_city, :output_state, :product_code, :cargo_weight, 
@@ -20,4 +21,5 @@ class CreateOrderOfService < ApplicationRecord
   def generate_code
     self.code = SecureRandom.alphanumeric(15).upcase
   end
+
 end

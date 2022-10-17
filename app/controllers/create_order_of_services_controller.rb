@@ -1,5 +1,5 @@
 class CreateOrderOfServicesController < ApplicationController 
-  before_action :set_create_os, only: [:show, :edit, :update, :pending, :initiated, :finish]
+  before_action :set_create_os, only: [:show, :edit, :update, :pending, :initiated, :finish, :feedback, :delay]
   before_action :only => [:new, :create, :edit, :update] do
     redirect_to root_url, notice: 'Você não possui permissão para acessar esta página!' unless current_user && current_user.admin?
   end
@@ -55,13 +55,17 @@ class CreateOrderOfServicesController < ApplicationController
     @create_os.send_options.each do |op|
       op.vehicle.in_operation!
     end
-    redirect_to @create_os
+    redirect_to feedback_create_order_of_service_url(@create_os), notice: 'Ordem de Serviço concluída com sucesso!'
   end
 
   def search_os
     @code = params["query"]
     @order_service = CreateOrderOfService.find_by(code: @code)
   end
+
+  def feedback
+  end
+
   private
 
   def create_os_params

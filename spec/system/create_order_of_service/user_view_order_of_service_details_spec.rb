@@ -74,7 +74,7 @@ describe 'Usuário vê detalhes da ordem de serviço' do
     #Assert
     expect(page).to have_content 'Modalidade e Veículo Selecionados'
     expect(page).to have_content 'Modalidade de Transporte: Normal'
-    expect(page).to have_content 'Prazo de Entrega: 24 horas'
+    expect(page).to have_content "Prazo de Entrega: 24 horas"
     expect(page).to have_content 'Valor Total: R$ 39,50'
     expect(page).to have_content 'Veículo: Carro Fiat | Doblo'
   end

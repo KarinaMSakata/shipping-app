@@ -47,10 +47,12 @@ third_time_express = DeliveryTime.create!(origin: 1001, destination: 2000, hours
 first_time_economica = DeliveryTime.create!(origin: 1, destination: 1000, hours: 72, mode_of_transport: economica)
 second_time_economica = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 96, mode_of_transport: economica)
 third_time_economica = DeliveryTime.create!(origin: 2001, destination: 3000, hours: 120, mode_of_transport: economica)
+third_time_express = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 48, mode_of_transport: express)
 
 first_time_padrao = DeliveryTime.create!(origin: 1, destination: 1000, hours: 60, mode_of_transport: padrao)
 second_time_padrao = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 84, mode_of_transport: padrao)
 third_time_padrao = DeliveryTime.create!(origin: 2001, destination: 4000, hours: 108, mode_of_transport: padrao)
+third_time_express = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 48, mode_of_transport: express)
 
 #Veículos
 moto_1 = Vehicle.create!(sort: 'Moto', brand: 'Honda', model: 'CG 160 Titan', identification:'ABC1E85', year_manufacture:'2019', max_load: 160, status: :in_operation )
@@ -88,3 +90,21 @@ os_4 = CreateOrderOfService.create!(output_address: 'Av. das Laranjas, 80', outp
                                     receiver_address: 'Rua das Marés, 99', receiver_city: 'São Luis do Maranhão', receiver_state: 'MA', 
                                     receiver_name: 'Jorge Amado', receiver_cpf: '68578925812', receiver_birth: '15/07/1989',
                                     total_distance: 2886)
+
+
+
+  atraso = ModeOfTransport.create!(name: 'Simulação de Atraso', min_distance: 1, max_distance: 4390, min_weight: 1, max_weight: 10000, fixed_rate: 10, status: 'activated')
+
+  t_atraso = DeliveryTime.create!(origin: 1, destination: 100, hours: -72 , mode_of_transport: atraso)
+
+  p_atraso = PriceByWeight.create!(min_weight: 11, max_weight: 50, price_per_km: 0.50, mode_of_transport: atraso)
+
+  d_atraso = PricePerDistance.create!(min_distance: 1, max_distance: 50, price: 9.00, mode_of_transport: atraso)
+
+  os = CreateOrderOfService.create!(output_address: 'Av. das Amoreiras, 100', output_city: 'São Paulo', output_state: 'SP',
+                                    product_code: 'LG-LCD-49-5502-P', height: 50, width: 90, depth: 5, cargo_weight: 14,
+                                    receiver_address: 'Rua Ipanema, 30', receiver_city: 'Osasco', receiver_state: 'SP', 
+                                    receiver_name: 'Marta Silva', receiver_cpf: '74125896325', receiver_birth: '03/08/1980',
+                                    total_distance: 41, status: :initiated)
+  
+  SendOption.create!(mode_of_transport: atraso, vehicle: carro_1, create_order_of_service: os)

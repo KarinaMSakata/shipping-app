@@ -25,3 +25,14 @@ Instruções para execução de testes:
   No terminal, acesse o diretório do projeto e execute o comando "rspec". Em caso de falha, o erro será apresentado na tela com uma mensagem vermelha. Caso não haja nenhum erro a ser corrigido, será devolvida a quantidade de testes na cor verde.
 
 Instruções para execução do projeto:
+  No terminal, execute o comando rails db:seed e em seguida rails server.
+  Para realizar o login como Administrador, use as seguintes credenciais: email = anamaria@sistemadefrete.com.br | senha = password
+  Para realizar o login como Usuário Regular, use as seguintes credenciais: email = carlos@sistemadefrete.com.br | senha = password
+
+OBSERVAÇÕES 
+  Alguns detalhes que ainda não puderam ser corrigidos:
+   [] checar porque alguns horários não estão retornando
+   [] checar porque no momento da seleção do veículo, para a ordem de serviço, outro veículo é retornado
+   [] validações adicionais
+   [] renderização dos dados recebidos através do formulário de motivo de atraso na entrega
+   [] há alguns objetos criados no seed, apenas com a finalidade de testar o atraso no prazo de entrega

@@ -1,0 +1,5 @@
+<%= form_with(model: @delay) do |f| %>
+  <p><%= f.label :description, 'Motivo do atraso' %></p>
+  <p><%= f.text_area :description %></p>
+  <%= f.submit 'Salvar' %>
+<% end %>

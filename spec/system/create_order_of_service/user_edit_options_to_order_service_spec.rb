@@ -80,7 +80,7 @@ describe 'Usuário altera modalidade de transporte' do
     #Assert
     expect(page).to have_content "Modalidade alterada com sucesso"
     expect(page).to have_content 'Modalidade de Transporte: Express'
-    expect(page).to have_content 'Prazo de Entrega: 24 horas'
+    expect(page).to have_content "Prazo de Entrega: 24 horas"
     expect(page).to have_content 'Valor Total: R$ 81,00'    
     expect(page).to have_content 'Veículo: Carro Fiat | Doblo'
   end

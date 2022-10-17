@@ -60,16 +60,7 @@ RSpec.describe DeliveryTime, type: :model do
         expect(p.errors.include? :destination).to be true
       end
 
-      it 'horas deve ser maior ou igual a 24' do
-        #Arrange 
-        p = DeliveryTime.new(hours: 12)
-
-        #Act
-        p.valid?
-
-        #Assert
-        expect(p.errors.include? :hours).to be true
-      end
+    
     end
   end
 end

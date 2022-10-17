@@ -4,5 +4,7 @@
 <p>Objeto Postado: <%= @order_service.output_city %>/<%= @order_service.output_state %></p>
 <p>Destino: <%= @order_service.receiver_address %> - <%= @order_service.receiver_city %>/<%= @order_service.receiver_state%> </p>
 <p>Veículo da entrega: <%= @order_service.send_options.first.vehicle.description %> - Placa <%= @order_service.send_options.first.vehicle.identification %></p>
-<p>Previsão de entrega: <%= @order_service.send_options.first.mode_of_transport.delivery_times.first.hours%> horas</p>
+<p>Previsão de entrega: <%= l(Time.now + (@order_service.send_options.first.mode_of_transport.delivery_times.first.hours)*3600, format: :long) %> horas</p>
+<% else %>
+  <p>Objeto não encontrado, verifique o código informado</p>
 <% end %>
