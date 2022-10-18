@@ -1,0 +1,22 @@
+<br>
+<% @create_os.send_options.each do |op| %>
+  <% if Time.now <= op.mode_of_transport.delivery_time(@create_os).hours.from_now %>
+    <p>Status de encerramento: Encerrada no prazo</p>
+    <p>Previsão de entrega: <%= l((Time.now + (op.mode_of_transport.delivery_times.first.hours).hours).to_date) %></p>
+    <p>Data de encerramento: <%= l(Time.now.to_date) %></p>
+  <% else %>
+    <p>Status de encerramento: Encerrada com atraso</p>
+    <p>Previsão de entrega: <%= l((Time.now + (op.mode_of_transport.delivery_times.first.hours).hours).to_date) %></p>
+    <p>Data de encerramento: <%= l(Time.now.to_date) %></p>
+
+  <% if @create_os.feedbacks.any? %>
+    <% @create_os.feedbacks.each do |f| %>
+      <p>Motivo do atraso: <%= f.description %></p>
+    <% end %>
+  <% else %>
+    <%= render 'feedbacks/form_feedback'%>
+  <% end %>
+
+  <% end %>
+<% end %>
+  <p><%= link_to 'Voltar', @create_os %></p>

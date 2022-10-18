@@ -34,5 +34,4 @@ OBSERVAÇÕES
    [] checar porque alguns horários não estão retornando
    [] checar porque no momento da seleção do veículo, para a ordem de serviço, outro veículo é retornado
    [] validações adicionais
-   [] renderização dos dados recebidos através do formulário de motivo de atraso na entrega
    [] há alguns objetos criados no seed, apenas com a finalidade de testar o atraso no prazo de entrega

@@ -16,12 +16,12 @@ Rails.application.routes.draw do
   end
   
   resources :create_order_of_services, only: [:new, :create, :show, :index, :edit, :update] do
+    resources :send_options, only: [:new, :create, :edit, :update]
+    resources :feedbacks, only: [:new, :create, :show, :update]
+    get 'end_order', on: :member
     patch 'pending', on: :member
     patch 'initiated', on: :member
     patch 'finish', on: :member
-    resources :send_options, only: [:new, :create, :edit, :update]
     get 'search_os', on: :collection
-    get 'feedback', on: :member
-    resources :delays, only: [:new, :create]
   end
 end

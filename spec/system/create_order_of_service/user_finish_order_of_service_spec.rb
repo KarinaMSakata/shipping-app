@@ -114,11 +114,11 @@ describe 'Usuário finaliza uma ordem em andamento' do
     click_on 'Encerrar Ordem de Serviço'
 
     #Assert
-    expect(current_url).to eq feedback_create_order_of_service_url(os.id)
+    expect(current_url).to eq end_order_create_order_of_service_url(os.id)
     expect(page).to have_content 'Ordem de Serviço concluída com sucesso!'
-    expect(page).to have_content "Previsão de entrega: #{I18n.l(Time.now+48.hours, format: :another)}"
+    expect(page).to have_content "Previsão de entrega: #{I18n.l((Time.now+48.hours).to_date)}"
     expect(page).to have_content 'Status de encerramento: Encerrada no prazo'
-    expect(page).to have_content "Data de encerramento: #{I18n.l(Time.now, format: :another)}" 
+    expect(page).to have_content "Data de encerramento: #{I18n.l((Time.now).to_date)}" 
     expect(page).to have_link 'Voltar'
   end
 
@@ -154,8 +154,8 @@ describe 'Usuário finaliza uma ordem em andamento' do
 
     #Assert
     expect(page).to have_content 'Status de encerramento: Encerrada com atraso'
-    expect(page).to have_content "Previsão de entrega: #{I18n.l(Time.now-36*3600, format: :another)}"
-    expect(page).to have_content "Data de encerramento: #{I18n.l(Time.now, format: :another)}" 
+    expect(page).to have_content "Previsão de entrega: #{I18n.l((Time.now+(-36).hours).to_date)}"
+    expect(page).to have_content "Data de encerramento: #{I18n.l(Time.now.to_date)}" 
     expect(page).to have_field 'Motivo do atraso'
     expect(page).to have_button 'Salvar'
     expect(page).to have_link 'Voltar'

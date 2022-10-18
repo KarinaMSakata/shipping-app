@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_17_033358) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_232909) do
   create_table "create_order_of_services", force: :cascade do |t|
     t.string "output_address"
     t.string "output_city"
@@ -33,12 +33,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_033358) do
     t.string "code"
   end
 
-  create_table "delays", force: :cascade do |t|
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "delivery_times", force: :cascade do |t|
     t.integer "origin"
     t.integer "destination"
@@ -47,6 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_033358) do
     t.integer "mode_of_transport_id", null: false
     t.integer "hours"
     t.index ["mode_of_transport_id"], name: "index_delivery_times_on_mode_of_transport_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "create_order_of_service_id", null: false
+    t.index ["create_order_of_service_id"], name: "index_feedbacks_on_create_order_of_service_id"
   end
 
   create_table "mode_of_transports", force: :cascade do |t|
@@ -120,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_033358) do
   end
 
   add_foreign_key "delivery_times", "mode_of_transports"
+  add_foreign_key "feedbacks", "create_order_of_services"
   add_foreign_key "price_by_weights", "mode_of_transports"
   add_foreign_key "price_per_distances", "mode_of_transports"
   add_foreign_key "send_options", "create_order_of_services"

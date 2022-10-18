@@ -2,7 +2,7 @@ class CreateOrderOfService < ApplicationRecord
   has_many :send_options
   has_many :mode_of_transports, through: :send_options
   has_many :vehicles, through: :send_options
-  has_many :delays
+  has_many :feedbacks
   
   enum status: {pending: 0, initiated: 2, finish: 4}
   validates :output_address, :output_city, :output_state, :product_code, :cargo_weight, 

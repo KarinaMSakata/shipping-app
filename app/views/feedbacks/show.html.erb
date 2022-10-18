@@ -9,7 +9,8 @@
     <p>Previsão de entrega: <%= l(Time.now + (op.mode_of_transport.delivery_times.first.hours).hours, format: :another) %></p>
     <p>Data de encerramento: <%= l(Time.now, format: :another) %></p>
 
-    <%= render 'delays/new'%>
+    <%= render 'form_feedback' %>
+    
   <% end %>
 <% end %>
   <p><%= link_to 'Voltar', @create_os %></p>
