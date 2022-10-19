@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   
   resources :create_order_of_services, only: [:new, :create, :show, :index, :edit, :update] do
     resources :send_options, only: [:new, :create, :edit, :update]
-    resources :feedbacks, only: [:new, :create, :show, :update]
+    resources :feedbacks, only: [:new, :create]
     get 'end_order', on: :member
     patch 'pending', on: :member
     patch 'initiated', on: :member

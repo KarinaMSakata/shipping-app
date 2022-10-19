@@ -10,10 +10,6 @@ class FeedbacksController < ApplicationController
     redirect_to end_order_create_order_of_service_url(@create_os.id)
   end
 
-  def show
-    @create_os = CreateOrderOfService.find(params[:id])
-  end
-
   def feedback_params
     params.require(:feedback).permit(:description)
   end

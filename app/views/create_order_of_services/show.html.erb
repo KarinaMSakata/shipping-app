@@ -63,6 +63,9 @@
   <% if @create_os.initiated? %>
     <%= button_to 'Encerrar Ordem de Serviço', finish_create_order_of_service_url, {method: 'patch'}%>
   <% end %>
+  <% if @create_os.finish? %>
+      <%= button_to 'Ver situação da entrega', end_order_create_order_of_service_url(@create_os.id), {method: 'get'} %>
+  <% end %>
 
 <br>
   <% if current_user.admin? %>

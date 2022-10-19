@@ -1,10 +1,34 @@
 <h1><%= @code %></h1>
 <h2>Informações de Rastreio</h2>
+
 <% if @order_service.present? %>
-<p>Objeto Postado: <%= @order_service.output_city %>/<%= @order_service.output_state %></p>
-<p>Destino: <%= @order_service.receiver_address %> - <%= @order_service.receiver_city %>/<%= @order_service.receiver_state%> </p>
-<p>Veículo da entrega: <%= @order_service.send_options.first.vehicle.description %> - Placa <%= @order_service.send_options.first.vehicle.identification %></p>
-<p>Previsão de entrega: <%= l(Time.now + (@order_service.send_options.first.mode_of_transport.delivery_times.first.hours)*3600, format: :long) %> horas</p>
+  <% if @order_service.pending? %>
+    <p>Origem: <%= @order_service.output_city %>/<%= @order_service.output_state %></p>
+    <p>Destino: <%= @order_service.receiver_address %> - <%= @order_service.receiver_city %>/<%= @order_service.receiver_state%> </p>
+    <p>Objeto em análise.</p>
+  <% end  %>
+
+  <% @order_service.send_options.each do |os| %>
+    <% if @order_service.initiated? %>
+      <p>Objeto Postado: <%= @order_service.output_city %>/<%= @order_service.output_state %></p>
+      <p>Destino: <%= @order_service.receiver_address %> - <%= @order_service.receiver_city %>/<%= @order_service.receiver_state%> </p>
+      <p>Veículo da entrega: <%= os.vehicle.description %> - Placa <%=os.vehicle.identification %></p>
+      <p>Previsão de entrega: <%= l(Time.now + (os.mode_of_transport.delivery_times.first.hours)*3600, format: :long) %></p>
+    <% end %>
+
+    <% if @order_service.finish? %>
+      <p>Objeto Postado: <%= @order_service.output_city %>/<%= @order_service.output_state %></p>
+      <p>Destino: <%= @order_service.receiver_address %> - <%= @order_service.receiver_city %>/<%= @order_service.receiver_state%> </p>
+      <p>Veículo da entrega: <%=os.vehicle.description %> - Placa <%=os.vehicle.identification %></p>
+      <p>Prazo de entrega inicial: <%= l((Time.now + (os.mode_of_transport.delivery_times.first.hours).hours).to_date) %></p>
+      <p>Objeto entregue ao destinatário em: <%= l(Time.now, format: :long) %></p>
+      <% if @order_service.feedbacks.any? %>
+        <% @order_service.feedbacks.each do |f| %>
+          <p>Motivo do atraso: <%= f.description %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 <% else %>
-  <p>Objeto não encontrado, verifique o código informado</p>
+    <p>Objeto não encontrado, verifique o código informado</p>
 <% end %>
