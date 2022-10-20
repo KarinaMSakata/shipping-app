@@ -35,8 +35,6 @@ def delivery_time(create_order_of_service)
   delivery_times.each do |dt|
     if dt.origin <= create_order_of_service.total_distance && dt.destination >= create_order_of_service.total_distance
       return (dt.hours)
-    else
-      return 'Não há valor disponível'
     end
   end
 end

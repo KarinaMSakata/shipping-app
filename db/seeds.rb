@@ -47,12 +47,10 @@ third_time_express = DeliveryTime.create!(origin: 1001, destination: 2000, hours
 first_time_economica = DeliveryTime.create!(origin: 1, destination: 1000, hours: 72, mode_of_transport: economica)
 second_time_economica = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 96, mode_of_transport: economica)
 third_time_economica = DeliveryTime.create!(origin: 2001, destination: 3000, hours: 120, mode_of_transport: economica)
-third_time_express = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 48, mode_of_transport: express)
 
 first_time_padrao = DeliveryTime.create!(origin: 1, destination: 1000, hours: 60, mode_of_transport: padrao)
 second_time_padrao = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 84, mode_of_transport: padrao)
 third_time_padrao = DeliveryTime.create!(origin: 2001, destination: 4000, hours: 108, mode_of_transport: padrao)
-third_time_express = DeliveryTime.create!(origin: 1001, destination: 2000, hours: 48, mode_of_transport: express)
 
 #Veículos
 moto_1 = Vehicle.create!(sort: 'Moto', brand: 'Honda', model: 'CG 160 Titan', identification:'ABC1E85', year_manufacture:'2019', max_load: 160, status: :in_operation )

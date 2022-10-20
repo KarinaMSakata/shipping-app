@@ -31,7 +31,6 @@ Instruções para execução do projeto:
 
 OBSERVAÇÕES 
   Alguns detalhes que ainda não puderam ser corrigidos:
-   [] checar porque alguns horários não estão retornando
    [] checar porque no momento da seleção do veículo, para a ordem de serviço, outro veículo é retornado
    [] validações adicionais
    [] há alguns objetos criados no seed, apenas com a finalidade de testar o atraso no prazo de entrega

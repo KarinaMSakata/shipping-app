@@ -24,6 +24,7 @@ class CreateOrderOfServicesController < ApplicationController
     @order_pending = CreateOrderOfService.pending
     @order_initiated = CreateOrderOfService.initiated
     @order_finish = CreateOrderOfService.finish
+
   end
 
   def edit; end
@@ -67,6 +68,11 @@ class CreateOrderOfServicesController < ApplicationController
     @feedback = Feedback.new
   end
   
+  def search_status
+    @status = params["query"]
+    @order = CreateOrderOfService.find_by(status: @status)
+  end
+
   private
 
   def create_os_params

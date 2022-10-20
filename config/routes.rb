@@ -23,5 +23,6 @@ Rails.application.routes.draw do
     patch 'initiated', on: :member
     patch 'finish', on: :member
     get 'search_os', on: :collection
+    get 'search_status', on: :collection
   end
 end

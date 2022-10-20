@@ -22,4 +22,5 @@ class CreateOrderOfService < ApplicationRecord
     self.code = SecureRandom.alphanumeric(15).upcase
   end
 
+
 end

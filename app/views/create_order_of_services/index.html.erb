@@ -15,10 +15,7 @@
 <% end %>
 
 
-
-
 <!-INITIATED->
-
 <% if @order_initiated.any? %>
   <% @order_initiated.each do |os| %>
     <p><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= link_to os.code, os %></p>
@@ -31,8 +28,8 @@
     <p>Não existem ordens de serviço em andamento</p>
 <% end %>
 
-<!-FINISH ->
 
+<!-FINISH ->
 <% if @order_finish.any? %>
   <% @order_finish.each do |os| %>
     <p><%= CreateOrderOfService.human_attribute_name(:code) %>: <%= link_to os.code, os %></p>
@@ -41,6 +38,6 @@
     <hr>
   <% end %>
 
-<% else %>
-    <p>Não existem ordens de serviço concluídas</p>
-<% end %>
+  <% else %>
+      <p>Não existem ordens de serviço concluídas</p>
+  <% end %>
